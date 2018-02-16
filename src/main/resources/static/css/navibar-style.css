@@ -50,6 +50,7 @@
 
     .link:hover {
         background-color: #DB7B48;
+        cursor: pointer;
     }
     #searchbar {
         width: 500px;
