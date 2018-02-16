@@ -1,13 +1,41 @@
 <html>
-<head>
-    <link rel="stylesheet" type="text/css" href="css/navibar-style.css">
-    <link rel="stylesheet" type="text/css" href="css/index-style.css">
-    <link rel="stylesheet" type="text/css" href="css/login-style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/login.js"></script>
-</head>
-<body class = "site">
-    <div class = "navbar"> 
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/navibar-style.css">
+        <link rel="stylesheet" type="text/css" href="css/userprofile-style.css">
+        <link rel="stylesheet" type="text/css" href="css/login-style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="js/login.js"></script>
+        <script>
+            function showLogin() { 
+                console.log("CLICKED");
+                var modal = document.getElementById('id01');
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            }
+        
+            var y = document.getElementById('id02');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == y) {
+                    y.style.display = "none";
+                }
+            }   
+        </script>
+        
+        <style> 
+            #history { 
+                
+            }
+        </style>
+    </head>
+    <body class = "site">
+        <div class = "navbar"> 
               <ul>
                   <li class = "left">
                       <img id = "logo" src = 'img/paw.png'/> <a> BOOP </a> </li>
@@ -25,30 +53,30 @@
 
             </ul>
         </div> 
-    <div id = "content">
-            <img src = "img/pom.jpg" class = "images" />
-            <img src = "img/husky.jpg" class = "images" />
-            <img src = "img/corgi.jpg" class = "images" />
-            <img src = "img/laby.jpg" class = "images" />
-            <img src = "img/pom.jpg" class = "images" />
-            <img src = "img/husky.jpg" class = "images" />
-            <img src = "img/corgi.jpg" class = "images" />
-            <img src = "img/laby.jpg" class = "images" />
-            <img src = "img/pom.jpg" class = "images" />
-            <img src = "img/husky.jpg" class = "images" />
-            <img src = "img/corgi.jpg" class = "images" />
-            <img src = "img/laby.jpg" class = "images" />
-            <img src = "img/pom.jpg" class = "images" />
-            <img src = "img/husky.jpg" class = "images" />
-            <img src = "img/corgi.jpg" class = "images" />
-            <img src = "img/laby.jpg" class = "images" />
-            <img src = "img/pom.jpg" class = "images" />
-            <img src = "img/husky.jpg" class = "images" />
-            <img src = "img/corgi.jpg" class = "images" />
-            <img src = "img/laby.jpg" class = "images" />
-            <img src = "img/pom.jpg" class = "images" />
-    </div>
-   <div class = "modal" id = "id01"> 
+        <div id = "content">
+            <div id = "profile">  
+                <div id = "profile-picture"> 
+                    <img id = "display-picture" src = "img/corgi.jpg"/>
+                </div>
+                <div id = "profile-bio">
+                    <div id = "profile-name"> UserName </div>
+                    <div id = "profile-details">
+                       <div class = "bullets" >
+                           <div class = "titles"> Name </div>
+                           <div class = "text"> Carlo Eroles </div>
+                       </div>
+                       <div class = "bullets" >
+                           <div class = "titles"> Email </div>
+                           <div class = "text"> carlo_eroles@dlsu.edu.ph </div>
+                       </div>
+                       <div class = "bullets" >
+                           <div class = "titles"> Description </div>
+                           <div class = "text">  rem ipsum dolor sit amet, consectetur adipiscing elit. Ut posuere in nisl ac lobortis. Vestibulum hendrerit justo auctor diam tincidunt varius. Vivamus vitae condimentum sapien. </div>
+                       </div> 
+                    </div>
+                </div>
+            </div>
+    <div class = "modal" id = "id01"> 
             <div class = "innermodal" > 
                 <h2> B o o p </h2>
 
@@ -106,5 +134,12 @@
                 </form>
          </div>
     </div>   
-</body>
+            <div id = "lower_content"> 
+                <div id = "History">
+                    <div class = ""></div>
+                </div>
+                <div id = "Forum"> </div>
+            </div>
+        </div>
+    </body>  
 </html>
