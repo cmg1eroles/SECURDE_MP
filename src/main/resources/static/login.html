@@ -1,0 +1,53 @@
+<html> 
+  	<head>
+        <link rel="stylesheet" type="text/css" href="css/navibar-style.css">
+        <link rel="stylesheet" type="text/css" href="css/login-style.css">
+    </head>
+  	<body class = "site">
+         <div class = "navbar"> 
+              <ul>
+                  <li class = "left">
+                      <img id = "logo" src = 'img/paw.png'/> <a> BOOP </a> </li>
+                  <li class = "left"><a> BOOP </a> </li>
+                  <li class = "left"><a class="link" > Home </a></li>
+                  <li class = "left"><a class="link" > Forum </a></li>
+                  <li class = "middle">
+                    <form>
+                        <input type = "search" id = "searchbar" placeholder = "Search..."/>
+                    </form>
+                  </li>
+                  <li class = "right"> <a> </a></li>
+                  <li class = "right"><a class="link" > Login </a></li>
+                  <li class = "right"><a class="link" > Register </a></li>
+
+            </ul>
+        </div> 
+            <div id = "content">
+               <h2> B o o p </h2>
+
+                <form id = "loginForm" action="/action_page.php">
+
+                  <div class="container">
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" required>
+
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <div id = "Buttons">
+                        <button type="submit"> Login </button>                   
+                        <button id ="signup" type="submit"> Sign up</button>
+                    </div>
+                    <button id = "admin" type="submit">Administrator</button>
+                    <label>
+                      <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                  </div>
+
+                  <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" class="cancelbtn">Cancel</button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                  </div>
+                </form>
+            </div>  
+  	</body>
+  </html>
