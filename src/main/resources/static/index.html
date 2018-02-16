@@ -3,28 +3,8 @@
     <link rel="stylesheet" type="text/css" href="css/navibar-style.css">
     <link rel="stylesheet" type="text/css" href="css/index-style.css">
     <link rel="stylesheet" type="text/css" href="css/login-style.css">
-      <script>
-            function showLogin() { 
-                console.log("CLICKED");
-                var modal = document.getElementById('id01');
-
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-            }
-        
-            var y = document.getElementById('id02');
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == y) {
-                    y.style.display = "none";
-                }
-            }   
-        </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/login.js"></script>
 </head>
 <body class = "site">
     <div class = "navbar"> 
