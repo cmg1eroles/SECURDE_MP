@@ -1,13 +1,12 @@
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="css/navibar-style.css">
-    <link rel="stylesheet" type="text/css" href="css/index-style.css">
-    <link rel="stylesheet" type="text/css" href="css/login-style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/login.js"></script>
-</head>
-<body class = "site">
-    <div class = "navbar"> 
+<html> 
+  	<head>
+        <link rel="icon" href="img/paw.png">
+        <link rel="stylesheet" type="text/css" href="css/navibar-style.css">
+        <link rel="stylesheet" type="text/css" href="css/login-style.css">
+        <link rel="stylesheet" type="text/css" href="css/forum-style.css">
+    </head>
+  	<body class = "site">
+         <div class = "navbar"> 
               <ul>
                   <li class = "left">
                       <img id = "logo" src = 'img/paw.png'/> <a> BOOP </a> </li>
@@ -25,32 +24,28 @@
 
             </ul>
         </div> 
-    <div id = "content">
-            <img src = "img/pom.jpg" class = "images" />
-            <img src = "img/husky.jpg" class = "images" />
-            <img src = "img/corgi.jpg" class = "images" />
-            <img src = "img/laby.jpg" class = "images" />
-            <img src = "img/pom.jpg" class = "images" />
-            <img src = "img/husky.jpg" class = "images" />
-            <img src = "img/corgi.jpg" class = "images" />
-            <img src = "img/laby.jpg" class = "images" />
-            <img src = "img/pom.jpg" class = "images" />
-            <img src = "img/husky.jpg" class = "images" />
-            <img src = "img/corgi.jpg" class = "images" />
-            <img src = "img/laby.jpg" class = "images" />
-            <img src = "img/pom.jpg" class = "images" />
-            <img src = "img/husky.jpg" class = "images" />
-            <img src = "img/corgi.jpg" class = "images" />
-            <img src = "img/laby.jpg" class = "images" />
-            <img src = "img/pom.jpg" class = "images" />
-            <img src = "img/husky.jpg" class = "images" />
-            <img src = "img/corgi.jpg" class = "images" />
-            <img src = "img/laby.jpg" class = "images" />
-            <img src = "img/pom.jpg" class = "images" />
-    </div>
-                   <div class = "modal" id = "id01"> 
+        <div id = "content"> 
+            <h1> Forums </h1>
+            <div class = "post"> 
+                <div class = "innerpost">
+                    <div class = "title"> Forum Title </div> 
+                    <div class = "description"> 10 members </div> 
+                </div>
+                <button class = "join"> Join Forum </button>
+            </div>
+             <div class = "post"> 
+                <div class = "innerpost">
+                    <div class = "title"> Forum Title </div> 
+                    <div class = "description"> 10 members </div> 
+                </div>
+                <button  class = "join"> Join Forum </button>
+            </div>
+            
+        </div>
+                 <div class = "modal" id = "id01"> 
                     <div class = "innermodal" > 
                         <h2> B o o p </h2>
+
                             <form id = "loginForm" action="/action_page.php">
 
                               <div class="container">
@@ -60,7 +55,7 @@
 
                                 <label for="psw"><b>Password</b></label>
                                 <input type="password" placeholder="Enter Password" name="psw" required>
-                                </div>
+                              </div>
 
                               <div class="container" style="background-color:#f1f1f1">
                                 <button class = "confirmbutton" type="submit"> Login </button> 
@@ -73,20 +68,20 @@
             <div class = "innermodal" > 
                 <h2> B o o p </h2>
 
-                    <form id = "regForm">
+                    <form id = "loginForm" action="/action_page.php">
 
                       <div class="container">
                         <label for="uname"><b>Full Name</b></label>
-                        <input id="reg-name" type="text" placeholder="Enter Full Name" name="uname" required>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
                           
                         <label for="uname"><b>Username</b></label>
-                        <input id="reg-uname" type="text" placeholder="Enter Username" name="uname" required>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
 
                         <label for="psw"><b>Password</b></label>
-                        <input id="reg-pw" type="password" placeholder="Enter Password" name="psw" required>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
                          
                         <label for="psw"><b>Confirm Password</b></label>
-                        <input id="reg-confirm" type="password" placeholder="Enter Password" name="psw" required>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
                       </div>
 
                       <div class="container" style="background-color:#f1f1f1">
@@ -96,5 +91,5 @@
                 </form>
          </div>
       </div>
-</body>
-</html>
+  	</body>
+  </html>

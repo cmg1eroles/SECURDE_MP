@@ -3,13 +3,13 @@
         <link rel="stylesheet" type="text/css" href="css/navibar-style.css">
         <link rel="stylesheet" type="text/css" href="css/userprofile-style.css">
         <link rel="stylesheet" type="text/css" href="css/login-style.css">
+        <link rel="icon" href="img/paw.png">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="js/login.js"></script>
         
+        
         <style> 
-            #history { 
-                
-            }
+            
         </style>
     </head>
     <body class = "site">
@@ -32,7 +32,7 @@
             </ul>
         </div> 
         <div id = "content">
-            <div id = "profile">  
+            <div id = "profile">    
                 <div id = "profile-picture"> 
                     <img id = "display-picture" src = "img/corgi.jpg"/>
                 </div>
@@ -54,39 +54,54 @@
                     </div>
                 </div>
             </div>
-            <div class = "modal" id = "id01">
-                <div class = "innermodal" >
-                    <h2> B o o p </h2>
-
-                    <form id = "loginForm">
-
-                        <div class="container">
-
-                            <label for="uname"><b>Username</b></label>
-                            <input id="login-uname" type="text" placeholder="Enter Username" name="uname" required>
-
-                            <label for="psw"><b>Password</b></label>
-                            <input id="login-pw" type="password" placeholder="Enter Password" name="psw" required>
-                            <div id = "Buttons">
-                                <button type="submit"> Login </button>
-                            </div>
-                            <label>
-                                <input type="checkbox" checked="checked" name="remember"> Remember me
-                            </label>
+            <div id = "lower_content"> 
+                <div id = "history">
+                      <div class = "header"> History </div>
+                        <div class = "post">
+                            <div class = "caption"> Husky </div>
+                            <div > 10/20/2015 </div>
                         </div>
-
-                        <div class="container" style="background-color:#f1f1f1">
-                            <button type="button"  onclick="document.getElementById('id01').style.display='none'"class="cancelbtn">Cancel</button>
-                            <span class="psw">Forgot <a href="#">password?</a></span>
+                        <div class = "post">
+                            <div class = "caption"> Husky </div>
+                            <div > 10/20/2016 </div>
                         </div>
-                    </form>
+                </div>
+                <div id = "forum"> 
+                     <div class = "header"> Forum </div>
+                        <div class = "post">
+                            <div class = "caption"> Cats Vs. Dogs </div> 
+                        </div>
+                         <div class = "post">
+                            <div class = "caption"> Dog food </div> 
+                        </div>
                 </div>
             </div>
-            <div class = "modal" id = "id02">
-                <div class = "innermodal" >
-                    <h2> B o o p </h2>
+        </div>
+                      <div class = "modal" id = "id01"> 
+                    <div class = "innermodal" > 
+                        <h2> B o o p </h2>
 
-                    <form id = "regForm">
+                            <form id = "loginForm" action="/action_page.php">
+
+                              <div class="container">
+
+                                <label for="uname"><b>Username</b></label>
+                                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                                <label for="psw"><b>Password</b></label>
+                                <input type="password" placeholder="Enter Password" name="psw" required>
+                               </div>
+
+                              <div class="container" style="background-color:#f1f1f1">
+                                <button class = "confirmbutton" type="submit"> Login </button>
+                                <button type="button"  onclick="document.getElementById('id01').style.display='none'"class="cancelbtn">Cancel</button>
+                              </div>
+                        </form>
+                 </div>
+            </div>  
+        <div class = "modal" id = "id02"> 
+            <div class = "innermodal" > 
+                <h2> B o o p </h2>
 
                         <div class="container">
                             <label for="uname"><b>Full Name</b></label>
@@ -95,28 +110,17 @@
                             <label for="uname"><b>Username</b></label>
                             <input id="reg-uname" type="text" placeholder="Enter Username" name="uname" required>
 
-                            <label for="psw"><b>Password</b></label>
-                            <input id="reg-pw" type="password" placeholder="Enter Password" name="psw" required>
-
-                            <label for="psw"><b>Confirm Password</b></label>
-                            <input id="reg-confirm" type="password" placeholder="Enter Password" name="psw" required>
-                            <div id = "Buttons">
-                                <button id ="signup" type="submit"> Sign up</button>
-                            </div>
-                        </div>
-
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                         
+                        <label for="psw"><b>Confirm Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                      </div>
                         <div class="container" style="background-color:#f1f1f1">
-                            <button type="button"  onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-                            <span class="psw">Forgot <a href="#">password?</a></span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div id = "lower_content"> 
-                <div id = "History">
-                    <div class = ""></div>
-                </div>
-                <div id = "Forum"> </div>
+                        <button class = "confirmbutton" id ="signup" type="submit">Sign up</button>
+                        <button type="button"  onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+                      </div>
+                </form>
             </div>
         </div>
     </body>  

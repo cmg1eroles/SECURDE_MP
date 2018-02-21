@@ -65,7 +65,9 @@
         background-position: left center;
         background-repeat: no-repeat;
         background-color: white;
+        border-color: white;
         border-radius: 10px;
+        border: none;
     }
     .site{
         box-sizing: border-box;
@@ -74,5 +76,5 @@
         height: auto; 
         display: flex; 
         flex-direction: column; 
-        background-color: #EFF0F4;
+        background-color: #EAE7DC;
     }
