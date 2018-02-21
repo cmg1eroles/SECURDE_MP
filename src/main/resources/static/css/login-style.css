@@ -76,11 +76,7 @@ input[type=text], input[type=password], input[type=email] {
     display: flex; 
     
 }
-<<<<<<< HEAD
-button, input[type="submit"] {
-=======
 .confirmbutton {
->>>>>>> Html-Designs
     background-color: #4CAF50;
 }
 button {
