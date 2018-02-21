@@ -8,11 +8,11 @@ public class User {
     @Column
     private Long id;
     @Column
-    private String firstName;
-    @Column
-    private String lastName;
+    private String name;
     @Column
     private String email;
+    @Column
+    private String username;
     @Column
     private String password;
     @Column
@@ -22,11 +22,11 @@ public class User {
 
     public User() {}
 
-    public User(Long id, String firstName, String lastName, String email, String password, String description, boolean admin) {
+    public User(Long id, String name, String email, String username, String password, String description, boolean admin) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.email = email;
+        this.username = username;
         this.password = password;
         this.description = description;
         this.admin = admin;
@@ -40,20 +40,12 @@ public class User {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -62,6 +54,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

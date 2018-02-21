@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ph.edu.dlsu.securde.SECURDE_MP.model.Adoption;
 import ph.edu.dlsu.securde.SECURDE_MP.model.PostAdoption;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.AdoptionRepository;
+import ph.edu.dlsu.securde.SECURDE_MP.repository.PostAdoptionRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
 
 import javax.annotation.security.PermitAll;
@@ -21,7 +22,7 @@ public class AdoptionController {
     @Autowired
     private UserRepository userRepo;
     @Autowired
-    private PostAdoption paRepo;
+    private PostAdoptionRepository paRepo;
 
     /*@GetMapping("/adoptions")
     public List<Adoption> getAllAdoptions() {
