@@ -37,7 +37,7 @@ $(document).ready(function() {
         }
         $.ajax({
             method: 'POST',
-            url: 'login',
+            url: '/login',
             contentType: 'application/json',
             data: JSON.stringify(formans),
             success: function(response) {
@@ -60,7 +60,7 @@ $(document).ready(function() {
         }
         $.ajax({
             method: 'POST',
-            url: 'register',
+            url: '/register',
             contentType: 'application/json',
             data: JSON.stringify(formans),
             success: function(response) {
@@ -76,7 +76,7 @@ $(document).ready(function() {
 function logout() {
     $.ajax({
         method: 'POST',
-        url: 'logout',
+        url: '/logout',
         contentType: 'application/json',
         success: function(response) {
             location.reload()

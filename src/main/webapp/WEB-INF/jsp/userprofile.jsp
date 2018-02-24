@@ -1,11 +1,16 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/resources/css/navibar-style.css">
-    <link rel="stylesheet" type="text/css" href="/resources/css/index-style.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/userprofile-style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/login-style.css">
     <link rel="icon" href="/resources/img/paw.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/resources/js/login.js"></script>
+
+
+    <style>
+
+    </style>
 </head>
 <body class = "site">
 <div class = "navbar">
@@ -25,30 +30,54 @@
         <li id="h-reg" class = "right" style="display: none"><a class="link" onclick="document.getElementById('id02').style.display='block'"> Register </a></li>
         <li id="h-logout" class = "right" style="display: none"><a class="link" onclick="logout()"> Logout </a></li>
         <li id="h-uname" class = "right" style="display: none"><a class="link" href="/profile/${sessionScope.user.id}">${sessionScope.user.username}</a></li>
+
     </ul>
 </div>
 <div id = "content">
-    <img src = "/resources/img/pom.jpg" class = "images" />
-    <img src = "/resources/img/husky.jpg" class = "images" />
-    <img src = "/resources/img/corgi.jpg" class = "images" />
-    <img src = "/resources/img/laby.jpg" class = "images" />
-    <img src = "/resources/img/pom.jpg" class = "images" />
-    <img src = "/resources/img/husky.jpg" class = "images" />
-    <img src = "/resources/img/corgi.jpg" class = "images" />
-    <img src = "/resources/img/laby.jpg" class = "images" />
-    <img src = "/resources/img/pom.jpg" class = "images" />
-    <img src = "/resources/img/husky.jpg" class = "images" />
-    <img src = "/resources/img/corgi.jpg" class = "images" />
-    <img src = "/resources/img/laby.jpg" class = "images" />
-    <img src = "/resources/img/pom.jpg" class = "images" />
-    <img src = "/resources/img/husky.jpg" class = "images" />
-    <img src = "/resources/img/corgi.jpg" class = "images" />
-    <img src = "/resources/img/laby.jpg" class = "images" />
-    <img src = "/resources/img/pom.jpg" class = "images" />
-    <img src = "/resources/img/husky.jpg" class = "images" />
-    <img src = "/resources/img/corgi.jpg" class = "images" />
-    <img src = "/resources/img/laby.jpg" class = "images" />
-    <img src = "/resources/img/pom.jpg" class = "images" />
+    <div id = "profile">
+        <div id = "profile-picture">
+            <img id = "display-picture" src = "/resources/img/corgi.jpg"/>
+        </div>
+        <div id = "profile-bio">
+            <div id = "profile-name"> ${username} </div>
+            <div id = "profile-details">
+                <div class = "bullets" >
+                    <div class = "titles"> Name </div>
+                    <div class = "text"> ${name} </div>
+                </div>
+                <div class = "bullets" >
+                    <div class = "titles"> Email </div>
+                    <div class = "text"> ${email} </div>
+                </div>
+                <div class = "bullets" >
+                    <div class = "titles"> Description </div>
+                    <div class = "text">  ${description} </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id = "lower_content">
+        <div id = "history">
+            <div class = "header"> History </div>
+            <div class = "post">
+                <div class = "caption"> Husky </div>
+                <div > 10/20/2015 </div>
+            </div>
+            <div class = "post">
+                <div class = "caption"> Husky </div>
+                <div > 10/20/2016 </div>
+            </div>
+        </div>
+        <div id = "forum">
+            <div class = "header"> Forum </div>
+            <div class = "post">
+                <div class = "caption"> Cats Vs. Dogs </div>
+            </div>
+            <div class = "post">
+                <div class = "caption"> Dog food </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class = "modal" id = "id01">
     <div class = "innermodal" >
