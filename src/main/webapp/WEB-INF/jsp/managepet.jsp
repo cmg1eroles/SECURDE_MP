@@ -6,27 +6,11 @@
     <link rel="icon" href="/resources/img/paw.png">
 </head>
 <body class = "site">
-<div class = "navbar">
-    <ul>
-        <li class = "left">
-            <img id = "logo" src = '/resources/img/paw.png'/> <a> BOOP </a> </li>
-        <li class = "left"><a> BOOP </a> </li>
-        <li class = "left"><a class="link" > Home </a></li>
-        <li class = "left"><a class="link" > Forum </a></li>
-        <li class = "middle">
-            <form>
-                <input type = "search" id = "searchbar" placeholder = "Search..."/>
-            </form>
-        </li>
-        <li class = "right"> <a> </a></li>
-        <li class = "right"><a class="link" > Login </a></li>
-        <li class = "right"><a class="link" > Register </a></li>
-    </ul>
-</div>
+<jsp:include page="navbar.jsp" />
 <div id = "content">
     <div id = "setting" >
         <div id = "profile-picture">
-            <img id = "display-picture" src = "reasource/img/corgi.jpg"/>
+            <img id = "display-picture" src = "${picPath}"/>
         </div>
         <div id="profile-part">
             <div id="profile-details">

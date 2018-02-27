@@ -36,6 +36,9 @@
                     <div class = "titles"> Description </div>
                     <div class = "text">  ${description} </div>
                 </div>
+                <div id="useronly">
+                    <button class="buttons" id="edit-profile"><a href="/user/manage"> Edit Profile</a> </button>
+                </div>
             </div>
         </div>
     </div>

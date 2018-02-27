@@ -126,3 +126,6 @@
                 outline: none;
                 border: none;
              }
+            #useronly {
+                display: none;
+            }

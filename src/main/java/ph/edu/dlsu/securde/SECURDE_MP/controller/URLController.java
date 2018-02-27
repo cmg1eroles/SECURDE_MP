@@ -55,11 +55,13 @@ public class URLController {
         PostAdoption adopt = postAdoptionRepository.findOne(id);
         model.put("type", adopt.getType());
         model.put("breed", adopt.getBreed());
+        model.put("picPath", adopt.getPicPath());
         model.put("birthdate",adopt.getBirthdate() );
         model.put("rescued", adopt.isRescued() );
         model.put("weight", adopt.getWeight());
         model.put("vaccines", adopt.getVaccines() );
         model.put("speccond", adopt.getSpecConds() );
+        model.put("id", adopt.getId() );
         return "petprofile";
     }
 
@@ -68,6 +70,7 @@ public class URLController {
         PostAdoption adopt = postAdoptionRepository.findOne(id);
         model.put("type", adopt.getType());
         model.put("breed", adopt.getBreed());
+        model.put("picPath", adopt.getPicPath());
         model.put("birthdate",adopt.getBirthdate() );
         model.put("rescued", adopt.isRescued() );
         model.put("weight", adopt.getWeight());

@@ -87,5 +87,9 @@
                 border: none;
              }
             #edit-profile {
-                background-color: black;
+                background-color: red;
+                display: none;
+            }
+           .adminonly {
+                display: none;
             }

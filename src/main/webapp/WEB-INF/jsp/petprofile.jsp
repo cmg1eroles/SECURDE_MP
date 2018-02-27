@@ -4,15 +4,13 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/petprofile-style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/login-style.css">
     <link rel="icon" href="/resources/img/paw.png">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/resources/js/login.js"></script>
 </head>
 <body class = "site">
 <jsp:include page="navbar.jsp" />
 <div id = "content">
     <div id = "profile">
         <div id = "profile-picture">
-            <img id = "display-picture" src = ${picPath} />
+            <img id = "display-picture" src = "${picPath}" />
         </div>
         <div id = "profile-bio">
             <div class = "profile-details">
@@ -32,7 +30,7 @@
                     <div class = "titles"> Rescued  </div>
                     <div class = "text"> ${rescued}</div>
                 </div>
-                <button class="buttons" id="adopt-btn"> Adopt Me</button>
+                <button class="buttons" id="adopt-btn" data-pid="${id}"> Adopt Me</button>
             </div>
         </div>
     </div>
@@ -52,8 +50,8 @@
                 <div class = "titles"> Conditions  </div>
                 <div class = "text"> ${speccond}</div>
             </div>
-            <div class="useronly">
-                <button class="buttons" id="edit-profile"><a href="/profile/1"> Edit Profile</a> </button>
+            <div class="adminonly">
+                <button class="buttons" id="edit-profile"><a href="/pet/${id}/manage"> Edit Profile</a> </button>
             </div>
         </div>
     </div>
@@ -109,5 +107,18 @@
         </form>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/resources/js/login.js"></script>
+<script src="/resources/js/adopt.js"></script>
+<script>
+   $(document).ready(function(){
+       var adopter_id  = $('#h-uname').attr('data-uid');
+       console.log(adopter_id);
+       if(adopter_id == 2) {
+           console.log("IM IN!")
+           $(".adminonly").show();
+       }
+   })
+</script>
 </body>
 </html>

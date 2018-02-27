@@ -8,27 +8,11 @@
 <body class = "site">
 <jsp:include page="navbar.jsp" />
 <div id = "content">
-    <img src = "/resources/img/pom.jpg" class = "images" />
+    <!--<a href="/pet/1"><img src = "/resources/img/pom.jpg" class = "images" href=""/></a>
     <img src = "/resources/img/husky.jpg" class = "images" />
     <img src = "/resources/img/corgi.jpg" class = "images" />
-    <img src = "/resources/img/laby.jpg" class = "images" />
-    <img src = "/resources/img/pom.jpg" class = "images" />
-    <img src = "/resources/img/husky.jpg" class = "images" />
-    <img src = "/resources/img/corgi.jpg" class = "images" />
-    <img src = "/resources/img/laby.jpg" class = "images" />
-    <img src = "/resources/img/pom.jpg" class = "images" />
-    <img src = "/resources/img/husky.jpg" class = "images" />
-    <img src = "/resources/img/corgi.jpg" class = "images" />
-    <img src = "/resources/img/laby.jpg" class = "images" />
-    <img src = "/resources/img/pom.jpg" class = "images" />
-    <img src = "/resources/img/husky.jpg" class = "images" />
-    <img src = "/resources/img/corgi.jpg" class = "images" />
-    <img src = "/resources/img/laby.jpg" class = "images" />
-    <img src = "/resources/img/pom.jpg" class = "images" />
-    <img src = "/resources/img/husky.jpg" class = "images" />
-    <img src = "/resources/img/corgi.jpg" class = "images" />
-    <img src = "/resources/img/laby.jpg" class = "images" />
-    <img src = "/resources/img/pom.jpg" class = "images" />
+    <img src = "/resources/img/laby.jpg" class = "images" />-->
+
 </div>
 <div class = "modal" id = "id01">
     <div class = "innermodal" >
@@ -83,6 +67,6 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/resources/js/login.js"></script>
-
+<script src="/resources/js/home.js"></script>
 </body>
 </html>

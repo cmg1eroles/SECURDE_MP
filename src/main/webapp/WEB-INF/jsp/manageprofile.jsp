@@ -4,9 +4,6 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/manageprofile-style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/misc.css">
     <link rel="icon" href="/resources/img/paw.png">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/resources/js/login.js"></script>
-    <script src="/resources/js/acctmng.js"></script>
 </head>
 <body class = "site">
 <jsp:include page="navbar.jsp" />
@@ -75,6 +72,9 @@
                 <button class="buttons" id ="changeSubmit" type="submit">Submit</button>
                 <button class="buttons" id="changeCancel" type="button"  onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
             </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="/resources/js/login.js"></script>
+            <script src="/resources/js/acctmng.js"></script>
         </form>
     </div>
 </div>
