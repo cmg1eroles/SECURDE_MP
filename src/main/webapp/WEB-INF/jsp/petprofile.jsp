@@ -72,16 +72,15 @@
 <div class = "modal" id = "id01">
     <div class = "innermodal" >
         <h2> B o o p </h2>
-
         <form id = "loginForm" action="/action_page.php">
 
             <div class="container">
 
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
+                <label for="login-uname"><b>Username</b></label>
+                <input id="login-uname" type="text" placeholder="Enter Username" name="uname" required>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="login-pw"><b>Password</b></label>
+                <input id="login-pw" type="password" placeholder="Enter Password" name="pw" required>
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
@@ -98,15 +97,20 @@
         <form id = "regForm">
 
             <div class="container">
-                <label for="uname"><b>Full Name</b></label>
-                <input id="reg-name" type="text" placeholder="Enter Full Name" name="uname" required>
+                <label for="reg-name"><b>Full Name</b></label>
+                <input id="reg-name" type="text" placeholder="Enter Full Name" name="name" required>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="reg-email"><b>Email</b></label>
+                <input id="reg-email" type="email" placeholder="Enter Email" name="email" required>
 
-                <label for="psw"><b>Confirm Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="reg-uname"><b>Username</b></label>
+                <input id="reg-uname" type="text" placeholder="Enter Username" name="uname" required>
 
+                <label for="reg-pw"><b>Password</b></label>
+                <input id="reg-pw" type="password" placeholder="Enter Password" name="pw" required>
+
+                <label for="reg-confirm"><b>Confirm Password</b></label>
+                <input id="reg-confirm" type="password" placeholder="Enter Password" name="confirm" required>
             </div>
 
             <div class="container" style="background-color:#f1f1f1">

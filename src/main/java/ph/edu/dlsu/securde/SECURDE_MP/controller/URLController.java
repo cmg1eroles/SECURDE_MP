@@ -10,6 +10,8 @@ import ph.edu.dlsu.securde.SECURDE_MP.model.User;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.PostAdoptionRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class URLController {
 
@@ -31,6 +33,19 @@ public class URLController {
         model.put("email", user.getEmail());
         model.put("description", user.getDescription());
         return "userprofile";
+    }
+
+    @RequestMapping("/user/manage")
+    public String manageUser(ModelMap model, HttpServletRequest request) {
+        if (request.getSession(false) != null) {
+            User u = (User) request.getSession().getAttribute("user");
+            model.put("username", u.getUsername());
+            model.put("name", u.getName());
+            model.put("email", u.getEmail());
+            model.put("description", u.getDescription());
+            return "manageprofile";
+        }
+        return "manageprofile";
     }
 
     @RequestMapping("/pet/{id}")
