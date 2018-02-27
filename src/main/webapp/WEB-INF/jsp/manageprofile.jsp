@@ -2,9 +2,11 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/resources/css/navibar-style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/manageprofile-style.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/misc.css">
     <link rel="icon" href="/resources/img/paw.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/resources/js/login.js"></script>
+    <script src="/resources/js/acctmng.js"></script>
 </head>
 <body class = "site">
 <jsp:include page="navbar.jsp" />
@@ -32,7 +34,7 @@
             </div>
             <div class="buttons-section" accesskey="n">
                 <button class="buttons" id="change-form"> Change Password </button>
-                <button class="buttons" id="edit-form-submit"> Submit </button>
+                <button class="buttons" id="edit-form-submit"> Update </button>
                 <button class="buttons" id="cancelbtn"> Cancel </button>
 
             </div>
@@ -44,13 +46,14 @@
     <div class = "innermodal" >
         <form id = "confirmForm" action="">
             <div class="container">
+                <div id="confirmMsg"></div>
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <input id="psw" type="password" placeholder="Enter Password" name="psw" required>
             </div>
 
             <div class="buttons-section" style="background-color:#f1f1f1">
-                <button class="buttons" id ="signup" type="submit">Sign up</button>
-                <button class="buttons" id="cancelbtn" type="button"  onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <button class="buttons" id ="confirmSubmit" type="submit">Submit</button>
+                <button class="buttons" id="confirmCancel" type="button"  onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
             </div>
         </form>
     </div>
@@ -58,32 +61,22 @@
 <div class = "modal" id = "id02">
     <div class = "innermodal" >
         <form id = "changeForm" action="">
+            <div id="changeMsg"></div>
             <div class="container">
                 <label for="Opsw"><b>Old Password</b></label>
-                <input type="password" placeholder="Enter Password" name="Opsw" required>
+                <input id="Opsw" type="password" placeholder="Enter Password" name="Opsw" required>
                 <label for="Npsw"><b>New Password</b></label>
-                <input type="password" placeholder="Enter Password" name="Npsw" required>
+                <input id="Npsw" type="password" placeholder="Enter Password" name="Npsw" required>
                 <label for="Cpsw"><b>Confirm Password</b></label>
-                <input type="password" placeholder="Enter Password" name="Cpsw" required>
+                <input id="Cpsw" type="password" placeholder="Enter Password" name="Cpsw" required>
             </div>
 
             <div class="buttons-section" style="background-color:#f1f1f1">
-                <button class="buttons" id ="signup" type="submit">Sign up</button>
-                <button class="buttons" id="cancelbtn" type="button"  onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+                <button class="buttons" id ="changeSubmit" type="submit">Submit</button>
+                <button class="buttons" id="changeCancel" type="button"  onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
             </div>
         </form>
     </div>
 </div>
-<script>
-    var button = document.getElementById("edit-form-submit")
-    button.addEventListener("click", function() {
-        document.getElementById("id01").style.display = "block"
-    })
-    var button = document.getElementById("change-form")
-    button.addEventListener("click", function() {
-        document.getElementById("id02").style.display = "block"
-    })
-
-</script>
 </body>
 </html>
