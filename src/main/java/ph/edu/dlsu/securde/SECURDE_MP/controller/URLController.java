@@ -60,4 +60,17 @@ public class URLController {
         model.put("speccond", adopt.getSpecConds() );
         return "petprofile";
     }
+
+    @RequestMapping("/pet/{id}/manage")
+    public String managePet(@PathVariable(value="id") Long id, ModelMap model) {
+        PostAdoption adopt = postAdoptionRepository.findOne(id);
+        model.put("type", adopt.getType());
+        model.put("breed", adopt.getBreed());
+        model.put("birthdate",adopt.getBirthdate() );
+        model.put("rescued", adopt.isRescued() );
+        model.put("weight", adopt.getWeight());
+        model.put("vaccines", adopt.getVaccines() );
+        model.put("speccond", adopt.getSpecConds() );
+        return "managepet";
+    }
 }

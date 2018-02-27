@@ -32,8 +32,8 @@
                     <div class = "titles"> Rescued  </div>
                     <div class = "text"> ${rescued}</div>
                 </div>
+                <button class="buttons" id="adopt-btn"> Adopt Me</button>
             </div>
-            <
         </div>
     </div>
 
@@ -51,6 +51,9 @@
             <div class = "bullets" >
                 <div class = "titles"> Conditions  </div>
                 <div class = "text"> ${speccond}</div>
+            </div>
+            <div class="useronly">
+                <button class="buttons" id="edit-profile"><a href="/profile/1"> Edit Profile</a> </button>
             </div>
         </div>
     </div>
