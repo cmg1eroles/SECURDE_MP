@@ -8,22 +8,7 @@
     <script src="/resources/js/login.js"></script>
 </head>
 <body class = "site">
-<div class = "navbar">
-    <ul>
-        <li class = "left"><img id = "logo" src = '/resources/img/paw.png'/> <a> BOOP </a> </li>
-        <li class = "left"><a class="link" > Home </a></li>
-        <li class = "left"><a class="link" > Forum </a></li>
-        <li class = "middle">
-            <form>
-                <input type = "search" id = "searchbar" placeholder = "Search..."/>
-            </form>
-        </li>
-        <li class = "right"> <a> </a></li>
-        <li class = "right"><a class="link"  onclick="document.getElementById('id01').style.display='block'" > Login </a></li>
-        <li class = "right"><a class="link" onclick="document.getElementById('id02').style.display='block'"> Register </a></li>
-
-    </ul>
-</div>
+<jsp:include page="navbar.jsp" />
 <div id = "content">
     <div id = "profile">
         <div id = "profile-picture">
@@ -48,6 +33,7 @@
                     <div class = "text"> ${rescued}</div>
                 </div>
             </div>
+            <
         </div>
     </div>
 
