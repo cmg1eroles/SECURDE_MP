@@ -42,7 +42,7 @@
                 color: white;
                 padding: 5px;
             }
-            .profile-details {
+            #profile-details { 
                 padding: 5px;
                 margin: 5px;
             }
@@ -80,3 +80,13 @@
                 color: floralwhite;
                 text-align:justify; 
             }
+            .buttons{ 
+                float: left;
+                background-color: #4CAF50;
+                color: white;
+                margin: 20px;
+                border-radius: 10px;
+                transition: .4s;
+                outline: none;
+                border: none;
+             }

@@ -5,7 +5,34 @@
         <link rel="stylesheet" type="text/css" href="css/login-style.css">
         <link rel="icon" href="img/paw.png">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/login.js"></script>
+        <script src="js/cancel.js"></script>
+        <script>
+            
+            function showLogin() { 
+                console.log("CLICKED");
+                var modal = document.getElementById('id01');
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            }
+        
+            var y = document.getElementById('id02');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == y) {
+                    y.style.display = "none";
+                }
+            }
+            
+            
+        </script>
     </head>
     <body class = "site">
         <div class = "navbar"> 
@@ -30,6 +57,7 @@
                     <img id = "display-picture" src = "img/corgi.jpg"/>
                 </div>
                 <div id = "profile-bio">
+                    <div id = "profile-name"> Bruce </div>
                     <div id = "profile-details">
                        <div class = "bullets" >
                            <div class = "titles"> Breed  </div>
@@ -43,28 +71,21 @@
                            <div class = "titles"> Status  </div>
                            <div class = "text"> In the shel</div>
                        </div>
+                       <div id="useronly"> 
+                           <button class="buttons" id="edit-profile"> Edit Profile</button>
+                       </div>
                     </div>
                 </div>
             </div>
       
             <div id = "medical"> 
-                 <div id = "profile-details">
-                       <div class = "bullets" >
-                           <div class = "titles"> Breed  </div>
-                           <div class = "text"> Corgi </div>
-                       </div>
-                       <div class = "bullets" >
-                           <div class = "titles"> Age </div>
-                           <div class = "text"> 1 year old</div>
-                       </div>
-                       <div class = "bullets" >
-                           <div class = "titles"> Status  </div>
-                           <div class = "text"> In the shel</div>
-                       </div>
-                    </div>
+                <div id = "profile-name"> Medical Information </div>
+                rem ipsum dolor sit amet, consectetur adipiscing elit. Ut posuere in nisl ac lobortis. Vestibulum hendrerit justo auctor diam tincidunt varius. Vivamus vitae condimentum sapien. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse finibus est ut molestie vulputate. Fusce a feugiat sem. Nulla facilisis risus in fringilla blandit. Morbi fringilla, arcu in vestibulum blandit, nunc nibh luctus ante, non lobortis ex lectus nec leo.
+
+                In feugiat dapibus mauris, vestibulum tempus metus porttitor mattis. Etiam faucibus, turpis vel elementum vestibulum, ex enim finibus est, in posuere nisi lectus id nisl. Vestibulum tempus aliquam dui, et sagittis nisi faucibus ac. Donec eu magna quis mauris blandit blandit a quis diam. Sed eget vestibulum sapien. Pellentesque orci nunc, feugiat vel suscipit quis, tristique id turpis. Nulla facilisi. Morbi pretium nunc sed arcu sagittis, id malesuada ligula fringilla. Nullam dapibus feugiat odio sed consectetur. Nunc in viverra augue.
             </div>
         </div> 
-             <div class = "modal" id = "id01"> 
+                             <div class = "modal" id = "id01"> 
                     <div class = "innermodal" > 
                         <h2> B o o p </h2>
 
@@ -73,15 +94,15 @@
                               <div class="container">
 
                                 <label for="uname"><b>Username</b></label>
-                                <input type="text" placeholder="Enter Username" name="uname" required>
+                                <input id="uname1" type="text" placeholder="Enter Username" name="uname" required>
 
                                 <label for="psw"><b>Password</b></label>
-                                <input type="password" placeholder="Enter Password" name="psw" required>
-                             </div>
+                                <input id="psw1" type="password" placeholder="Enter Password" name="psw" required>
+                              </div>
 
                               <div class="container" style="background-color:#f1f1f1">
                                 <button class = "confirmbutton" type="submit"> Login </button> 
-                                <button type="button"  onclick="document.getElementById('id01').style.display='none'"class="cancelbtn">Cancel</button>
+                                <button type="button" id="cancel1" onclick="document.getElementById('id01').style.display='none'"class="cancelbtn">Cancel</button>
                               </div>
                         </form>
                  </div>
@@ -90,23 +111,25 @@
             <div class = "innermodal" > 
                 <h2> B o o p </h2>
 
-                    <form id = "regForm">
+                    <form id = "loginForm" action="/action_page.php">
 
-                        <div class="container">
-                            <label for="uname"><b>Full Name</b></label>
-                            <input id="reg-name" type="text" placeholder="Enter Full Name" name="uname" required>
+                      <div class="container">
+                        <label for="uname"><b>Full Name</b></label>
+                        <input id="name2" type="text" placeholder="Enter Username" name="uname" required>
+                          
+                        <label for="uname"><b>Username</b></label>
+                        <input id="uname2"  type="text" placeholder="Enter Username" name="uname" required>
 
                         <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
+                        <input id="psw2"  type="password" placeholder="Enter Password" name="psw" required>
                          
                         <label for="psw"><b>Confirm Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
-                       
+                        <input id="cpsw2" type="password" placeholder="Enter Password" name="psw" required>
                       </div>
 
                       <div class="container" style="background-color:#f1f1f1">
-                         <button class = "confirmbutton" id ="signup" type="submit">Sign up</button>
-                        <button type="button"  onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+                        <button class = "confirmbutton" id ="signup" type="submit">Sign up</button>
+                        <button type="button"  id="cancel2" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
                       </div>
                 </form>
          </div>

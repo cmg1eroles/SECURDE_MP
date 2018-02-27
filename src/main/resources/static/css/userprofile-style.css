@@ -115,3 +115,14 @@
                 font-weight: bold;
 
             }
+            .buttons{ 
+                float: left;
+                background-color: #4CAF50;
+                color: white;
+                margin: 20px;
+                height: 8%;
+                border-radius: 10px;
+                transition: .4s;
+                outline: none;
+                border: none;
+             }
