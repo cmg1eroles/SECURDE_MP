@@ -93,4 +93,72 @@ public class UserController {
                 ses.invalidate();
         return "success";
     }
+
+    @PostMapping("/changePassword")
+    public HashMap<String, Object> changePassword(HttpServletRequest request,
+                                                  @Valid @RequestBody String form) {
+        HashMap<String, Object> data = new HashMap();
+        data.put("success", false);
+
+        JSONObject json = new JSONObject(form);
+        String oPsw = (String)json.get("old");
+        String nPsw = (String)json.get("new");
+        String cPsw = (String)json.get("con");
+
+        if (oPsw.equals("") || nPsw.equals("") || cPsw.equals("")) {
+            data.put("msg", "Please fill out all fields.");
+        } else if (!nPsw.equals(cPsw)) {
+            data.put("msg", "Passwords do not match!");
+        } else if (request.getSession(false) != null) {
+            User user = (User) request.getSession(false).getAttribute("user");
+            if (oPsw.equals(user.getPassword())) {
+                user.setPassword(nPsw);
+                userRepository.save(user);
+                data.put("msg", "Password successfully changed!");
+                data.put("success", true);
+            } else {
+                data.put("msg", "Incorrect password!");
+            }
+        } else {
+            data.put("msg", "No user is logged in!");
+        }
+
+        return data;
+    }
+
+    @PostMapping("/user/{id}")
+    public HashMap<String, Object> updateUser(HttpServletRequest request,
+                                              @PathVariable(value="id") Long id,
+                                              @Valid @RequestBody String form) {
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("success", false);
+
+        JSONObject json = new JSONObject(form);
+        String uname = (String)json.get("username");
+        String name = (String)json.get("name");
+        String email = (String)json.get("email");
+        String desc = (String)json.get("description");
+        String pword = (String)json.get("password");
+
+        if (uname.equals("") || name.equals("") || email.equals("") || desc.equals("") || pword.equals("")) {
+            data.put("msg", "Please fill out all fields.");
+        } else {
+            User user = userRepository.findOne(id);
+            if (user.getPassword().equals(pword)) {
+                user.setUsername(uname);
+                user.setName(name);
+                user.setEmail(email);
+                user.setDescription(desc);
+                userRepository.save(user);
+                request.getSession().setAttribute("user", user);
+                data.put("success", true);
+                data.put("msg", "User information successfully updated!");
+            }
+            else {
+                data.put("msg", "Incorrect password!");
+            }
+        }
+
+        return data;
+    }
 }

@@ -39,13 +39,15 @@ public class URLController {
     public String manageUser(ModelMap model, HttpServletRequest request) {
         if (request.getSession(false) != null) {
             User u = (User) request.getSession().getAttribute("user");
-            model.put("username", u.getUsername());
-            model.put("name", u.getName());
-            model.put("email", u.getEmail());
-            model.put("description", u.getDescription());
-            return "manageprofile";
+            if (u != null) {
+                model.put("username", u.getUsername());
+                model.put("name", u.getName());
+                model.put("email", u.getEmail());
+                model.put("description", u.getDescription());
+                return "manageprofile";
+            }
         }
-        return "manageprofile";
+        return "errorpage";
     }
 
     @RequestMapping("/pet/{id}")
