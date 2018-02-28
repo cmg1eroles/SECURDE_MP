@@ -56,7 +56,8 @@ $(document).ready(function() {
             'email': $("#reg-email").val().trim(),
             'username': $("#reg-uname").val().trim(),
             'password': $("#reg-pw").val(),
-            'confirm': $("#reg-confirm").val()
+            'confirm': $("#reg-confirm").val(),
+            'admin': $("#reg-admin").is(':checked')? 1 : 0
         }
         $.ajax({
             method: 'POST',
@@ -72,6 +73,8 @@ $(document).ready(function() {
         })
     })
 })
+
+
 
 function logout() {
     $.ajax({

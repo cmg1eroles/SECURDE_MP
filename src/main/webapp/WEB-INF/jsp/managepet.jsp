@@ -28,9 +28,7 @@
                         <input type="text" name="type" id="type" value="${type}">
                         <input type="text" name="breed" id="breed" value="${breed}">
                         <input type="text" name="birthday" id="birthday" value="${birthdate}">
-                        ${rescued}
                         <input type="checkbox" name="rescued" id="rescued" ${rescued ? "checked='true'" : ""}> Rescued <br>
-
                         <input type="text" name="weight" id="weight" value="${weight}">
                         <input type="text" name="vaccines" id="vaccines" value="${vaccines}">
                         <input type="text" name="speccond" id="speccond" value="${speccond}">

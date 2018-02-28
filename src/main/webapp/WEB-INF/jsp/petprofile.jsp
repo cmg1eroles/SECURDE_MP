@@ -4,6 +4,10 @@
     <link rel="stylesheet" type="text/css" href="/resources/css/petprofile-style.css">
     <link rel="stylesheet" type="text/css" href="/resources/css/login-style.css">
     <link rel="icon" href="/resources/img/paw.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 </head>
 <body class = "site">
 <jsp:include page="navbar.jsp" />
@@ -58,7 +62,6 @@
 </div>
 <jsp:include page="login.jsp" />
 <jsp:include page="register.jsp" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/resources/js/login.js"></script>
 <script src="/resources/js/adopt.js"></script>
 <script>

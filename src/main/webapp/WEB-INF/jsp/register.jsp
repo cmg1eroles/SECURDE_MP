@@ -19,11 +19,13 @@
 
                 <label for="reg-confirm"><b>Confirm Password</b></label>
                 <input id="reg-confirm" type="password" placeholder="Enter Password" name="confirm" required>
+
+                <label for="reg-admin"><b>Administrator</b></label>
+                <input type="checkbox" name="reg-admin" id="reg-admin">
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
                 <button class = "confirmbutton" id ="signup" type="submit">Sign up</button>
-                <button id = "admintbutton"> Add Admin</button>
                 <button type="button"  onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
             </div>
         </form>

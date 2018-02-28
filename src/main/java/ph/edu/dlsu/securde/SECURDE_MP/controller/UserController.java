@@ -67,6 +67,7 @@ public class UserController {
         String uname = (String)json.get("username");
         String pw = (String)json.get("password");
         String confirm = (String)json.get("confirm");
+        boolean admin = ((int)json.get("admin") == 1);
 
         if (name.equals("") || email.equals("") || uname.equals("") || pw.equals("") || confirm.equals("")) {
             data.put("msg", "Please fill out all fields.");
@@ -74,7 +75,7 @@ public class UserController {
             data.put("msg", "Passwords do not match!");
         } else {
             Long id = userRepository.newId();
-            User u = userRepository.save(new User(id, name, email, uname, pw, "", false));
+            User u = userRepository.save(new User(id, name, email, uname, pw, "", admin));
             if (u != null) {
                 data.put("msg", "success");
                 data.put("user", u);
