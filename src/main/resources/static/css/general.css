@@ -1,0 +1,27 @@
+        body { 
+          margin-top: 70px;
+          margin-bottom: 20px;
+        }
+        #searchbtn { 
+            border-color: dimgray;
+            color: dimgray;
+        }
+        #searchbtn:hover {
+            background-color: dimgray;
+            color: white;
+        }
+        .nav-link { 
+            color: dimgray;
+        }
+        h1 { 
+           text-align: center;
+        }
+        .jumbotron {
+            background-color: #21395e; 
+            color: white !important;
+            margin-top: 80px;
+        }
+        .card { 
+            margin: 10px;
+            background-color: #f7f7f4;
+        }

@@ -1,172 +1,156 @@
-<html> 
-  	<head>
-        <link rel="icon" href="img/paw.png">
-        <link rel="stylesheet" type="text/css" href="css/navibar-style.css">
-        <link rel="stylesheet" type="text/css" href="css/login-style.css">
-        <link rel="stylesheet" type="text/css" href="css/forumpage-style.css">
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/login.js"></script>
-        <script src="js/cancel.js"></script>
-        <style> 
-            #addInput{
-                width: 90%;
-                height: 10%;
-                border-radius: 10px;
-                margin-right: auto;
-                margin-left: auto;
-                display: block;
-                border: 1px solid #ccc;
-                box-sizing: border-box;
-            }
-            .dpicon { 
-                background-image: url(../img/dp.png);
-                background-size: 100% 100%;
-                background-position: center;
-                background-repeat: no-repeat;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                padding: 10px;
-            }
-            #addBtn { 
-                float: right;
-                width: 30%;
-                background-color: #4CAF50;
-                align-content: center;
-                color: white;
-                border-radius: 10px;
-                transition: .4s;
-                padding: 14px 20px;
-                margin: 10px;
-                border: none;
-                cursor: pointer;
-            }
-            #addBtn:hover {
-                opacity: 0.8;
-                box-shadow: 0px 0px 5px black;
-            }
-            
-        </style>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <title>Boop</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="css/general.css">
+      <style>
+        #addBtn{ 
+            margin: 10px;
+            float: right;
+        }
+      </style>
     </head>
-  	<body class = "site">
-         <div class = "navbar"> 
-              <ul>
-                  <li class = "left">
-                      <img id = "logo" src = 'img/paw.png'/> <a> BOOP </a> </li>
-                  <li class = "left"><a> BOOP </a> </li>
-                  <li class = "left"><a class="link" > Home </a></li>
-                  <li class = "left"><a class="link" > Forum </a></li>
-                  <li class = "middle">
-                    <form>
-                        <input type = "search" id = "searchbar" placeholder = "Search..."/>
+    <body>
+                   <nav class="navbar navbar-light bg-light fixed-top ">
+
+                    <form class="form-inline">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success my-2 my-sm-0" id="searchbtn" type="submit">Search</button>
                     </form>
-                  </li>
-                  <li class = "right"> <a> </a></li>
-                  <li class = "right"><a class="link"  onclick="document.getElementById('id01').style.display='block'" > Login </a></li>
-                  <li class = "right"><a class="link" onclick="document.getElementById('id02').style.display='block'"> Register </a></li>
-
-            </ul>
-        </div> 
-        <div id = "content"> 
-            <h1> Forums </h1>
-            <div class = "post"> 
-                <div class="dpicon"></div>
-                <div class = "innerpost">
-                    <div class = "comment"> blah blah blah </div>
-                    <div class = "user"> Person </div> 
+                    <ul class="nav justify-content">
+                            <li class="nav-item">
+                              <a class="nav-link active" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#">Forum</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Categories
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Type </a>
+                                    <a class="dropdown-item" href="#">Breed</a>
+                                </div>
+                            </li>
+                     </ul>
+                    <div class="inline">
+                            <button class="btn btn-outline-success my-2 my-sm-0" id="searchbtn" type="submit"
+                            data-toggle="modal" data-target="#login-modal">Login</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0" id="searchbtn" type="submit"
+                            data-toggle="modal" data-target="#register-modal">Register</button>
+                    </div>
+                  </nav>
+        <div class="container">
+           <div class="jumbotron">
+             <div class="text-center">
+                  <div class="mx-auto"> 
+                          <h1 id="title"> Cats vs. Dogs </h1>
+                          <div id="creator"> <span> image </span>Sean Paragas</div>
+                          <div id="desc"> <span> created </span> December 2017</div>
                  </div>
-            </div>
-             <div class = "post">
-                <div class="dpicon"></div>
-                <div class = "innerpost">
-                    <div class = "comment"> blah blah blah </div>
-                    <div class = "user"> Person </div> 
-                 </div>
+                
              </div>
-             <div class = "post"> 
-                <div class="dpicon"></div>
-                <div class = "innerpost">
-                    <div class = "comment"> blah blah blah </div>
-                    <div class = "user"> Person </div> 
-                 </div>
             </div>
-             <div class = "post">
-                <div class="dpicon"></div>
-                <div class = "innerpost">
-                    <div class = "comment"> blah blah blah </div>
-                    <div class = "user"> Person </div> 
-                 </div>
-             </div>
-            <div class = "post"> 
-                <div class="dpicon"></div>
-                <div class = "innerpost">
-                    <div class = "comment"> blah blah blah </div>
-                    <div class = "user"> Person </div> 
-                 </div>
-            </div>
-             <div class = "post">
-                <div class="dpicon"></div>
-                <div class = "innerpost">
-                    <div class = "comment"> blah blah blah </div>
-                    <div class = "user"> Person </div> 
-                 </div>
-             </div>
-             <div > 
-                 <form id="commentForm"> 
-                    <input id="addInput" type="text" placeholder="Add Comment..">
-                    <input id="addBtn" type="button" value="Add Comment">
-                 </form>
-            </div>
+                    <div class="col" >
+                            <div class="card">
+                              <div class="card-body">
+                                <h6 class="comment"> I think they are equal</h6>
+                                <p class="commentator"> Franchesca Chong</p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-body">
+                                <h6 class="comment"> I think they are equal</h6>
+                                <p class="commentator"> Franchesca Chong</p>
+                              </div>
+                            </div>
+                            <div class="card">
+                              <div class="card-body">
+                                <h6 class="comment"> I think they are equal</h6>
+                                <p class="commentator"> Franchesca Chong</p>
+                              </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="newcomment" rows="4"></textarea>
+                        <button type="button" class="btn btn-success" id="addBtn">Add Comment</button>
+                    </div>
         </div>
-                 <div class = "modal" id = "id01"> 
-                    <div class = "innermodal" > 
-                        <h2> B o o p </h2>
-
-                            <form id = "loginForm" action="/action_page.php">
-
-                              <div class="container">
-
-                                <label for="uname"><b>Username</b></label>
-                                <input id="uname1" type="text" placeholder="Enter Username" name="uname" required>
-
-                                <label for="psw"><b>Password</b></label>
-                                <input id="psw1" type="password" placeholder="Enter Password" name="psw" required>
-                              </div>
-
-                              <div class="container" style="background-color:#f1f1f1">
-                                <button class = "confirmbutton" type="submit"> Login </button> 
-                                <button type="button" id="cancel1" onclick="document.getElementById('id01').style.display='none'"class="cancelbtn">Cancel</button>
-                              </div>
-                        </form>
-                 </div>
-            </div>  
-        <div class = "modal" id = "id02"> 
-            <div class = "innermodal" > 
-                <h2> B o o p </h2>
-
-                    <form id = "loginForm" action="/action_page.php">
-
-                      <div class="container">
-                        <label for="uname"><b>Full Name</b></label>
-                        <input id="name2" type="text" placeholder="Enter Username" name="uname" required>
-                          
-                        <label for="uname"><b>Username</b></label>
-                        <input id="uname2"  type="text" placeholder="Enter Username" name="uname" required>
-
-                        <label for="psw"><b>Password</b></label>
-                        <input id="psw2"  type="password" placeholder="Enter Password" name="psw" required>
-                         
-                        <label for="psw"><b>Confirm Password</b></label>
-                        <input id="cpsw2" type="password" placeholder="Enter Password" name="psw" required>
-                      </div>
-
-                      <div class="container" style="background-color:#f1f1f1">
-                        <button class = "confirmbutton" id ="signup" type="submit">Sign up</button>
-                        <button type="button"  id="cancel2" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-                      </div>
-                </form>
-         </div>
-      </div>
-  	</body>
-  </html>
+            <!--Login Modal -->
+              <div class="modal fade" id="login-modal">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Login</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                    <!--Register Modal -->
+              <div class="modal fade" id="register-modal">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Register</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                              <form>
+                                        <div class="form-group">
+                                          <label for="exampleInputEmail1">Email address</label>
+                                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                        </div>
+                                        <div class="form-group">
+                                           <label for="exampleInputPassword1">Username</label>
+                                           <input type="password" class="form-control" id="" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="exampleInputPassword1">Name</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                             </div>
+                                        <div class="form-group">
+                                          <label for="exampleInputPassword1">Password</label>
+                                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="exampleInputPassword1">Confirm Password</label>
+                                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                        </div>
+                                         <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="isadmin">
+                                            <label class="form-check-label" for="isadmin">Administrator</label>
+                                        </div> 
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                             </form>
+                        </div>
+                     </div>
+                    </div>
+               </div>
+    </body>
+</html>

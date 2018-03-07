@@ -1,95 +1,20 @@
-            #content {      
-                margin-top: 0;
-                margin-bottom: 27px;
-                width: 70%;
-                margin-left: auto;
-                margin-right: auto;
-                display: inline-block;
-                border-radius: 10px;
-            }
-             #profile {
-                width: 100%;
-                margin: 20px;
-                padding: 20px;
-                background-color: #6B7A8F;
-                display: flex;
-                margin-left: auto;
-                margin-right: auto;
-                display: inline-block;
-                border-radius: 10px;
-                font-size: 18px;
-                color: dimgray;
-            }
-            #profile-picture { 
-                float: left;
-                padding: 35px;
-            }
-            #display-picture {
-                width: 200px;
-                height: 200px;
-                border-radius: 5px;
-            }
-            #profile-bio {
-                float: left;
-                width: 70%;
-                padding: 5px;
-            }
-            #profile-name { 
-                font-size: 40px; 
-                color: white;
-                padding: 5px;
-            }
-            #profile-details { 
-                padding: 5px;
-                margin: 5px;
-            }
-            .bullets {
-                margin: 5px;
-                color: white;
-                font-family:  "Segoe UI",Arial,sans-serif;
-                display: flex;
-            }
-            .titles { 
-                float: left;
-                margin-right: 10px;
-                margin-bottom: 10px;
-                font-weight: bold;
-            }
-            .text {
-                float: left;
-                margin-left: 5px;
-                margin-bottom: 10px;
-                text-align:justify; 
-            }
+        .container { 
+          padding: 100px;
+        }
+        .card-img-top {
+            padding: 10px;
+            width: 80%;
+            height: 80%;
+            align-content: center;
             
-            #medical {
-                width: 100%;
-                margin: 20px;
-                padding: 20px;
-                background-color: #6B7A8F;
-                display: flex;
-                margin-left: auto;
-                margin-right: auto;
-                display: inline-block;
-                border-radius: 10px;
-                font-size: 15px;
-                color: floralwhite;
-                text-align:justify; 
-            }
-            .buttons{ 
-                float: left;
-                background-color: #4CAF50;
-                color: white;
-                margin: 20px;
-                border-radius: 10px;
-                transition: .4s;
-                outline: none;
-                border: none;
-             }
-            #edit-profile {
-                background-color: red;
-                display: none;
-            }
-           .adminonly {
-                display: none;
-            }
+        }
+        .table-borderless{
+            border: none;
+            border-bottom-color: white;
+        }
+        .row {
+            padding: 50px;      
+        }
+        #col-titles { 
+            font-weight: bold;
+        }
