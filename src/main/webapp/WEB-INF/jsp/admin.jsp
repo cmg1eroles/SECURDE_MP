@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/resources/css/admin-style.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -32,7 +33,9 @@
     <!-- Tab panes -->
     <div class="tab-content">
         <div id="animals" class="container tab-pane active"><br>
-            <h3>Animals</h3>
+            <h3>Animals
+                <img data-toggle="modal" data-target="#add-modal" class="icon"src="/resources/img/plus.png" alt=""/>
+            </h3>
             <table id="animal-table" class="table table-hover">
                 <thead>
                 <tr>
@@ -56,7 +59,7 @@
                     <td>Otto</td>
                     <td>@mdo</td>
                     <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit-modal">Edit</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#animal-modal">Edit</button>
                         <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#delete-modal">Delete</button>
                     </td>
 
@@ -82,8 +85,7 @@
                     <td>Carlo </td>
                     <td>100</td>
                     <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit-modal">Edit</button>
-                        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#delete-modal">Delete</button>
+                        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#deleteforum-modal">Delete</button>
                     </td>
 
                 </tbody>
@@ -112,7 +114,7 @@
                     <td>To be Picked up</td>
                     <td>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit-modal">Change Status</button>
-                        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#delete-modal">Cancel Transaction</button>
+                        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#deletetrans-modal">Cancel Transaction</button>
                     </td>
                 </tr>
                 </tbody>
@@ -120,8 +122,93 @@
         </div>
     </div>
 </div>
+<!-- Add Animal Modal -->
+<div class="modal fade" id="add-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Animal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label > Type </label>
+                        <select id="type_dd"class="form-control">
+                            <option> --</option>
+                            <option>Cat</option>
+                            <option>Dog</option>
 
-
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label > Breed </label>
+                        <select id="breed_dd" class="form-control">
+                            <option> --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label > Age </label>
+                        <input type="text" class="form-control" id="reg_age" placeholder="Age">
+                    </div>
+                    <div class="form-group">
+                        <label> Status </label>
+                        <select id="status_dd" class="form-control">
+                            <option> --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label >Vaccines </label>
+                        <input type="text" class="form-control" id="reg_vaccines" placeholder="Vaccines">
+                    </div>
+                    <div class="form-group">
+                        <label >Special Conditions</label>
+                        <input type="text" class="form-control" id="reg_conditions" placeholder="Special Conditions">
+                    </div>
+                    <input id="btn_register" type="submit" class="btn btn-primary" value="Register"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Animal Modal -->
+<div class="modal fade" id="animal-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>                                                                                                                       </form>
+                    <div class="form-group">
+                        <label > Age </label>
+                        <input type="text" class="form-control" id="edit_age" placeholder="Age">
+                    </div>
+                    <div class="form-group">
+                        <label> Status </label>
+                        <select id="edit_dd" class="form-control">
+                            <option> --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label >Vaccines </label>
+                        <input type="text" class="form-control" id="edit_vaccines" placeholder="Vaccines">
+                    </div>
+                    <div class="form-group">
+                        <label >Special Conditions</label>
+                        <input type="text" class="form-control" id="edit_conditions" placeholder="Special Conditions">
+                    </div>
+                    <input id="btn_edit" type="submit" class="btn btn-primary" value="Register"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Edit Modal -->
 <div class="modal fade" id="edit-modal">
     <div class="modal-dialog" role="document">
@@ -136,7 +223,9 @@
                 <form>
                     <div class="form-group">
                         <label >Status</label>
-                        <input type="text" class="form-control" id="status" placeholder="In the Shelter">
+                        <select id="editstatus_dd" class="form-control">
+                            <option> --</option>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -149,7 +238,47 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Delete animal #1</h5>
+                <h5 class="modal-title">Delete animal </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Are you sure you want to delete? </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Delete Forum Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="deleteforum-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete animal </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p> Are you sure you want to delete? </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Delete Transaction  Modal -->
+<div class="modal" tabindex="-1" role="dialog" id="deletetrans-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete animal </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

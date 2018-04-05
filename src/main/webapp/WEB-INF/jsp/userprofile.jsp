@@ -18,8 +18,11 @@
         <div class="text-center">
             <img src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg"class="rounded-circle" id="profile-pic">
             <div class="mx-auto">
-                <h3 id="uname"> @cheska_ale</h3>
-                <div id="name"> Cheska Alejandrino</div>
+                <h3 id="uname"> ${username}</h3>
+                <div id="name">
+                    <span> ${firstname} </span>
+                    <span> ${lastname} </span>
+                </div>
                 <div id="desc"> I love icecream, donuts, pizza, pasta, and many more....</div>
             </div>
         </div>
