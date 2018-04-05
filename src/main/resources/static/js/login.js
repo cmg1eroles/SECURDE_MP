@@ -21,14 +21,13 @@ $(document).ready(function() {
                 if (response.success) {
                     location.reload()
                 }
-                else console.log(response.success)
+                else $("#login-form-msg").text(response.msg)
             }
         })
     })
 
     $("#regForm").submit(function(e) {
         e.preventDefault()
-        console.log("register")
         var formans = {
             'email': $("#reg_email").val().trim(),
             'username': $("#reg_uname").val().trim(),
@@ -46,7 +45,7 @@ $(document).ready(function() {
                 if (response.msg == "success") {
                     location.reload()
                 }
-                else console.log(response.msg)
+                else $("#reg-form-msg").text(response.msg)
             }
         })
     })
