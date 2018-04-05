@@ -20,18 +20,18 @@ public class User {
     @Column
     private String email;
     @Column
-    private RoleType role;
+    private Long roleCode;
 
     public User() {}
 
-    public User(Long id, String firstName, String lastName, String username, String password, String email, RoleType role) {
+    public User(Long id, String firstName, String lastName, String username, String password, String email, Long roleCode) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.role = role;
+        this.roleCode = roleCode;
     }
 
     public Long getId() {
@@ -82,11 +82,24 @@ public class User {
         this.email = email;
     }
 
-    public RoleType getRole() {
-        return role;
+    public Long getRoleCode() {
+        return roleCode;
     }
 
-    public void setRole(RoleType role) {
-        this.role = role;
+    public void setRoleCode(Long roleCode) {
+        this.roleCode = roleCode;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", roleCode=" + roleCode +
+                '}';
     }
 }
