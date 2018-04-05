@@ -19,25 +19,23 @@
 <div class="container">
     <div class="card text-center">
         <div class="img-holder">
-            <img class="card-img-top"  src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg" alt="Card image cap">
+            <img class="card-img-top"  src=${picPath} alt="Card image cap">
         </div>
         <div class="card-body" >
             <div class="row">
                 <div class="col" id="col-titles">
                     <div class="text-md-left"> Type</div>
                     <div class="text-md-left"> Breed</div>
-                    <div class="text-md-left"> Age</div>
-                    <div class="text-md-left"> Status</div>
+                    <div class="text-md-left"> Weight </div>
                     <div class="text-md-left"> Medical Vaccines</div>
                     <div class="text-md-left"> Special Conditions</div>
                 </div>
                 <div class="col">
-                    <div class="text-md-left" id="type"> Dog</div>
-                    <div class="text-md-left" id="breed"> Corgi</div>
-                    <div class="text-md-left" id="age"> 1 year</div>
-                    <div class="text-md-left" id="status"> In the Pound</div>
-                    <div class="text-md-left" id="vaccines"> Complete </div>
-                    <div class="text-md-left" id="speccond"> None</div>
+                    <div class="text-md-left" id="type"> ${type}</div>
+                    <div class="text-md-left" id="breed"> ${breed}</div>
+                    <div class="text-md-left" id="weight"> ${weight} lbs </div>
+                    <div class="text-md-left" id="vaccines"> ${vaccines} </div>
+                    <div class="text-md-left" id="speccond"> ${speccond} </div>
                 </div>
             </div>
             <button class="btn btn-primary" data-toggle="modal" data-target="#cond-modal">Adopt Animal</button>
