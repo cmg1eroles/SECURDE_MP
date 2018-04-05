@@ -16,15 +16,15 @@
                     </div>
                     <div class="form-group">
                         <label for="reg_uname">Username</label>
-                        <input type="text" class="form-control" id="reg_uname" placeholder="Password">
+                        <input type="text" class="form-control" id="reg_uname" placeholder="Username">
                     </div>
                     <div class="form-group">
                         <label for="reg_fname">First Name</label>
-                        <input type="text" class="form-control" id="reg_fname" placeholder="Password">
+                        <input type="text" class="form-control" id="reg_fname" placeholder="First name">
                     </div>
                     <div class="form-group">
-                        <label for="reg_lname">First Name</label>
-                        <input type="text" class="form-control" id="reg_lname" placeholder="Password">
+                        <label for="reg_lname">Last Name</label>
+                        <input type="text" class="form-control" id="reg_lname" placeholder="Last name">
                     </div>
                     <div class="form-group">
                         <label for="reg_password">Password</label>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label for="reg_confirm">Confirm Password</label>
-                        <input type="password" class="form-control" id="reg_confirm" placeholder="Password">
+                        <input type="password" class="form-control" id="reg_confirm" placeholder="Confirm Password">
                     </div>
                     <input id="btn_register" type="submit" class="btn btn-primary" value="Register"/>
                 </form>

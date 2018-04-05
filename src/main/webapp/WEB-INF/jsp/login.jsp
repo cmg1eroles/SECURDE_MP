@@ -12,8 +12,7 @@
                 <form>
                     <div class="form-group">
                         <label for="login_email">Email address</label>
-                        <input type="email" class="form-control" id="login_email" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <input type="email" class="form-control" id="login_email" aria-describedby="emailHelp" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label for="login_password">Password</label>

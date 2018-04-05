@@ -1,0 +1,13 @@
+h2 {
+    margin: 20px;
+    text-align: center;
+}
+.nav-link {
+    color: dimgray;
+}
+.container{
+    padding: 20px;
+}
+button {
+    margin-left: 20px;
+}
