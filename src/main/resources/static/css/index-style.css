@@ -1,7 +1,12 @@
-        .container{
-            padding: 100px;
-         }
-        .card-deck {
-          margin-top: 20px;
-          margin-bottom: 20px;
-        }
+.container{
+    padding: 30px;
+}
+.card-deck {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#search_bar {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}

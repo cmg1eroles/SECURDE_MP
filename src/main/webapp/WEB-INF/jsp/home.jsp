@@ -14,6 +14,9 @@
 <body>
 <jsp:include page="navbar.jsp" />
 <div class="container">
+    <form class="form">
+        <input id="search_bar" class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search">
+    </form>
     <div class="cardcontainer">
         <div class="card-deck">
             <div class="card">

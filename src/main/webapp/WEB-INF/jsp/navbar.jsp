@@ -1,9 +1,4 @@
 <nav class="navbar navbar-light bg-light fixed-top ">
-
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" id="searchbtn" type="submit">Search</button>
-    </form>
     <ul class="nav justify-content">
         <li class="nav-item">
             <a class="nav-link active" href="#">Home</a>
