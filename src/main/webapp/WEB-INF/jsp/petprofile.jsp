@@ -19,7 +19,7 @@
 <div class="container">
     <div class="card text-center">
         <div class="img-holder">
-            <img class="card-img-top"  src=${picPath} alt="Card image cap">
+            <img class="card-img-top"  src=${picPath} >
         </div>
         <div class="card-body" >
             <div class="row">
@@ -31,10 +31,10 @@
                     <div class="text-md-left"> Special Conditions</div>
                 </div>
                 <div class="col">
-                    <div class="text-md-left" id="type"> ${type}</div>
-                    <div class="text-md-left" id="breed"> ${breed}</div>
-                    <div class="text-md-left" id="weight"> ${weight} lbs </div>
-                    <div class="text-md-left" id="vaccines"> ${vaccines} </div>
+                    <div class="text-md-left" id="type"> ${type} </div>
+                    <div class="text-md-left" id="breed"> ${breed} </div>
+                    <div class="text-md-left" id="weight"> ${weight} year </div>
+                    <div class="text-md-left" id="vaccines"> ${vaccines}  </div>
                     <div class="text-md-left" id="speccond"> ${speccond} </div>
                 </div>
             </div>
