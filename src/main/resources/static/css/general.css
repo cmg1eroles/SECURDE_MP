@@ -2,11 +2,11 @@
           margin-top: 70px;
           margin-bottom: 20px;
         }
-        #searchbtn { 
+        #searchbtn, #loginbtn, #regbtn, #logoutbtn {
             border-color: dimgray;
             color: dimgray;
         }
-        #searchbtn:hover {
+        #searchbtn:hover, #loginbtn:hover, #regbtn:hover, #logoutbtn:hover {
             background-color: dimgray;
             color: white;
         }

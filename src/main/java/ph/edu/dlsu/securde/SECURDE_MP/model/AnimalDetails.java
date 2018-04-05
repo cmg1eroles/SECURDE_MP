@@ -20,14 +20,10 @@ public class AnimalDetails {
     private String specConds;
     @Column
     private Long breedCode;
-    @Column
-    private Date birthdate;
-    @Column
-    private boolean rescued;
 
     public AnimalDetails() {}
 
-    public AnimalDetails(Long id, String picPath, Long animalTypeCode, float weight, String vaccines, String specConds, Long breedCode, Date birthdate, boolean rescued) {
+    public AnimalDetails(Long id, String picPath, Long animalTypeCode, float weight, String vaccines, String specConds, Long breedCode) {
         this.id = id;
         this.picPath = picPath;
         this.animalTypeCode = animalTypeCode;
@@ -35,8 +31,6 @@ public class AnimalDetails {
         this.vaccines = vaccines;
         this.specConds = specConds;
         this.breedCode = breedCode;
-        this.birthdate = birthdate;
-        this.rescued = rescued;
     }
 
     public Long getId() {
@@ -95,22 +89,6 @@ public class AnimalDetails {
         this.breedCode = breedCode;
     }
 
-    public Date getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public boolean isRescued() {
-        return rescued;
-    }
-
-    public void setRescued(boolean rescued) {
-        this.rescued = rescued;
-    }
-
     @Override
     public String toString() {
         return "AnimalDetails{" +
@@ -121,8 +99,6 @@ public class AnimalDetails {
                 ", vaccines='" + vaccines + '\'' +
                 ", specConds='" + specConds + '\'' +
                 ", breedCode=" + breedCode +
-                ", birthdate=" + birthdate +
-                ", rescued=" + rescued +
                 '}';
     }
 }

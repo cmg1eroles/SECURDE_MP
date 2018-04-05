@@ -20,17 +20,20 @@ public class User {
     @Column
     private String email;
     @Column
+    private String description;
+    @Column
     private Long roleCode;
 
     public User() {}
 
-    public User(Long id, String firstName, String lastName, String username, String password, String email, Long roleCode) {
+    public User(Long id, String firstName, String lastName, String username, String password, String email, String description, Long roleCode) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.description = description;
         this.roleCode = roleCode;
     }
 
@@ -82,6 +85,14 @@ public class User {
         this.email = email;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Long getRoleCode() {
         return roleCode;
     }
@@ -99,6 +110,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", description='" + description + '\'' +
                 ", roleCode=" + roleCode +
                 '}';
     }

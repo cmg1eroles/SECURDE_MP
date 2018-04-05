@@ -13,17 +13,14 @@ public class ForumPost {
     @Column
     private String title;
     @Column
-    private String content;
-    @Column
     private Date postDate;
 
     public ForumPost() {}
 
-    public ForumPost(Long id, Long posterId, String title, String content, Date postDate) {
+    public ForumPost(Long id, Long posterId, String title, Date postDate) {
         this.id = id;
         this.posterId = posterId;
         this.title = title;
-        this.content = content;
         this.postDate = postDate;
     }
 
@@ -51,14 +48,6 @@ public class ForumPost {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Date getPostDate() {
         return postDate;
     }
@@ -73,7 +62,6 @@ public class ForumPost {
                 "id=" + id +
                 ", posterId=" + posterId +
                 ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
                 ", postDate=" + postDate +
                 '}';
     }

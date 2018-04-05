@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="regForm">
                     <div class="form-group">
                         <label for="reg_email">Email address</label>
                         <input type="email" class="form-control" id="reg_email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -34,7 +34,8 @@
                         <label for="reg_confirm">Confirm Password</label>
                         <input type="password" class="form-control" id="reg_confirm" placeholder="Confirm Password">
                     </div>
-                    <input id="btn_register" type="submit" class="btn btn-primary" value="Register"/>
+                    <!-- <input id="btn_register" type="submit" class="btn btn-primary" value="Register"/> -->
+                    <button class = "btn btn-primary" id ="btn_register" type="submit">Register</button>
                 </form>
             </div>
         </div>
