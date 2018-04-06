@@ -111,8 +111,9 @@ $(document).ready(function() {
         url: '/users',
         contentType: 'application/json',
         success: function(response) {
-
+            console.log("Users: ")
             for (var i = 0 ; i < response.length ; i++) {
+                console.log(response.length)
                 var id = document.createElement('td')
                 var username = document.createElement('td')
                 var firstname = document.createElement('td')
@@ -142,7 +143,7 @@ $(document).ready(function() {
                 $(tr).append(rolecode)
                 $(tr).append(buttons)
 
-                $('#trans-body').append(tr)
+                $('#users-body').append(tr)
             }
         }
     })
@@ -168,18 +169,18 @@ $(document).ready(function() {
                 $(deletebtn).text('Delete Forum')
 
                 $(id).text(response[i].id);
-                $(title).text(response[i].username);
-                $(creator).text(response[i].firstName);
+                $(title).text(response[i].title);
+                $(creator).text(response[i].firstname);
                 $(buttons).text();
 
-                $(buttons).append(rolebtn)
+                $(buttons).append(deletebtn)
 
                 $(tr).append(id)
                 $(tr).append(title)
                 $(tr).append(creator)
                 $(tr).append(buttons)
 
-                $('#trans-body').append(tr)
+                $('#forums-body').append(tr)
             }
         }
     })

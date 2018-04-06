@@ -12,6 +12,7 @@ import ph.edu.dlsu.securde.SECURDE_MP.repository.CommentRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.ForumPostRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,19 @@ public class ForumController {
     private UserRepository userRepository;
 
     @GetMapping("/forums")
-    public JSONArray getAllForums() {
-        return forumPostRepository.findAllForumPosts();
+    public List<ForumDetails> getAllForums() {
+        List<ForumPost> posts = forumPostRepository.findAll();
+        List<ForumDetails> forums = new ArrayList<ForumDetails>();
+
+        for(int i = 0; i < posts.size(); i++) {
+            User user = userRepository.findOne(posts.get(i).getPosterId());
+            forums.add( new ForumDetails(posts.get(i).getId(),
+                                         user.getFirstName(),
+                                         user.getLastName(),
+                                         posts.get(i).getTitle(),
+                                         posts.get(i).getPostDate()));
+        }
+        return forums;
     }
 
     @RequestMapping("/forums/{id}")
@@ -37,7 +49,6 @@ public class ForumController {
 
         for (int i = 0; i < comments.size(); i++) {
             User user = userRepository.findOne(comments.get(i).getCommentorId());
-
             forumPosts.add(new ForumComment(comments.get(i).getId(),
                     user.getFirstName(),
                     user.getLastName(),
@@ -45,7 +56,6 @@ public class ForumController {
                     comments.get(i).getMsg(),
                     comments.get(i).getDatetime()
             ));
-
         }
         return forumPosts;
     }

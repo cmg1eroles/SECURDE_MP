@@ -18,12 +18,12 @@
         <div class="text-center">
             <img src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg"class="rounded-circle" id="profile-pic">
             <div class="mx-auto">
-                <h3 id="uname"> ${username}</h3>
+                <h3 id="uname"> ${username} <button class="btn btn-primary" data-toggle="modal" data-target="#edit-modal"> Edit Profile </button></h3>
                 <div id="name">
                     <span> ${firstname} </span>
                     <span> ${lastname} </span>
                 </div>
-                <div id="desc"> I love icecream, donuts, pizza, pasta, and many more....</div>
+                <div id="desc">${description}</div>
             </div>
         </div>
     </div>
@@ -65,7 +65,103 @@
 </div>
 <!-- Login Modal -->
 <jsp:include page="login.jsp" />
-<!--Register Modal -->
+<!-- Register Modal -->
 <jsp:include page="register.jsp" />
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="edit-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input type="email" class="form-control" id="edit_email" aria-describedby="emailHelp" placeholder="${email}">
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" id="edit_uname" placeholder="${username}">
+                    </div>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" id="edit_fname" placeholder="${firstname}">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" id="edit_lname" placeholder="${lastname}">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" class="form-control" id="edit_desc" placeholder="${description}">
+                    </div>
+                    <!-- <input id="btn_register" type="submit" class="btn btn-primary" value="Register"/> -->
+                </form>
+                <button class = "btn btn-primary" id ="btn_edit"
+                        data-toggle="modal" data-target="#confirm-modal" data-dismiss="modal">Save Changes</button>
+                <button class = "btn btn-success" id ="btn_psw"
+                        data-toggle="modal" data-target="#change-modal" data-dismiss="modal">Change Password</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Confirm Changes Modal -->
+<div class="modal fade" id="confirm-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="confirmForm">
+                    <div class="form-group">
+                        <label>Enter Password</label>
+                        <input type="password" class="form-control" id="con_psw" aria-describedby="emailHelp" placeholder="Confirm Password">
+                    </div>
+                    <button class = "btn btn-success" id ="btn_confirm" type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Change Password Modal -->
+<div class="modal fade" id="change-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="changeForm">
+                    <div class="form-group">
+                        <label>Old Password</label>
+                        <input type="email" class="form-control" id="psw_old" aria-describedby="emailHelp" placeholder="Old Password">
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="text" class="form-control" id="psw_new" placeholder="New Password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="text" class="form-control" id="psw_con" placeholder="Confirm Password">
+                    </div>
+                    <button class = "btn btn-success" id ="edit_psw" type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

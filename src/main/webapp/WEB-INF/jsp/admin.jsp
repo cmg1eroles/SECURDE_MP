@@ -21,6 +21,9 @@
             <a class="nav-link active" data-toggle="tab" href="#animals">Animals</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#users">Users</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#forums">Forums</a>
         </li>
         <li class="nav-item">
@@ -67,16 +70,7 @@
                     <th>Buttons</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>1002</td>
-                    <td>Cats vs. Dogs </td>
-                    <td>Carlo </td>
-                    <td>100</td>
-                    <td>
-                        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#deleteforum-modal">Delete</button>
-                    </td>
-
+                <tbody id="forums-body">
                 </tbody>
             </table>
         </div>
@@ -94,12 +88,7 @@
                     <th>Buttons</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#deleteforum-modal">Delete</button>
-                    </td>
-
+                <tbody id="users-body">
                 </tbody>
             </table>
         </div>
