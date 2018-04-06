@@ -20,10 +20,12 @@ public class AnimalDetails {
     private String specConds;
     @Column
     private Long breedCode;
+    @Column
+    private Long adminId;
 
     public AnimalDetails() {}
 
-    public AnimalDetails(Long id, String picPath, Long animalTypeCode, float weight, String vaccines, String specConds, Long breedCode) {
+    public AnimalDetails(Long id, String picPath, Long animalTypeCode, float weight, String vaccines, String specConds, Long breedCode, Long adminId) {
         this.id = id;
         this.picPath = picPath;
         this.animalTypeCode = animalTypeCode;
@@ -31,6 +33,7 @@ public class AnimalDetails {
         this.vaccines = vaccines;
         this.specConds = specConds;
         this.breedCode = breedCode;
+        this.adminId = adminId;
     }
 
     public Long getId() {
@@ -89,6 +92,14 @@ public class AnimalDetails {
         this.breedCode = breedCode;
     }
 
+    public Long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
+    }
+
     @Override
     public String toString() {
         return "AnimalDetails{" +
@@ -99,6 +110,7 @@ public class AnimalDetails {
                 ", vaccines='" + vaccines + '\'' +
                 ", specConds='" + specConds + '\'' +
                 ", breedCode=" + breedCode +
+                ", adminId=" + adminId +
                 '}';
     }
 }

@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalDetails;
+import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalType;
+import ph.edu.dlsu.securde.SECURDE_MP.model.Breed;
 import ph.edu.dlsu.securde.SECURDE_MP.model.User;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.AnimalDetailsRepository;
+import ph.edu.dlsu.securde.SECURDE_MP.repository.AnimalTypeRepository;
+import ph.edu.dlsu.securde.SECURDE_MP.repository.BreedRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
 
 @Controller
@@ -18,6 +22,10 @@ public class URLController {
     private UserRepository userRepository;
     @Autowired
     private AnimalDetailsRepository animalDetailsRepository;
+    @Autowired
+    private BreedRepository breedRepository;
+    @Autowired
+    private AnimalTypeRepository animalTypeRepository;
 
     @RequestMapping("/home")
     public String goToHome(ModelMap model) {
@@ -36,8 +44,10 @@ public class URLController {
     @RequestMapping("/pet/{id}")
     public String pet(@PathVariable(value="id") Long id, ModelMap model) {
         AnimalDetails adopt = animalDetailsRepository.findOne(id);
-        model.put("type", adopt.getAnimalTypeCode());
-        model.put("breed", adopt.getBreedCode());
+        AnimalType type = animalTypeRepository.findOne(adopt.getAnimalTypeCode());
+        Breed breed = breedRepository.findOne(adopt.getBreedCode());
+        model.put("type", type.getAnimalType() );
+        model.put("breed", breed.getBreed());
         model.put("picPath", adopt.getPicPath());
         model.put("weight", adopt.getWeight());
         model.put("vaccines", adopt.getVaccines() );

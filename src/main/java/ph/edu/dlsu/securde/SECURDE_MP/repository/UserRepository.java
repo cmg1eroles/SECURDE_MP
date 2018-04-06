@@ -13,4 +13,5 @@ public interface UserRepository extends JpaRepository<User, Long>{
 
     @Query(value = "SELECT COALESCE(MAX(id), 0)+1 FROM user", nativeQuery = true)
     public Long newId();
+
 }

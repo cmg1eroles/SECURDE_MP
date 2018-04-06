@@ -13,7 +13,6 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/home">Type </a>
-                <a class="dropdown-item" href="/home">Breed</a>
             </div>
         </li>
     </ul>

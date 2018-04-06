@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/resources/js/petprofile.js"></script>
     <link rel="stylesheet" href="/resources/css/general.css">
     <link rel="stylesheet" href="/resources/css/petprofile-style.css">
     <style>
@@ -33,12 +34,12 @@
                 <div class="col">
                     <div class="text-md-left" id="type"> ${type} </div>
                     <div class="text-md-left" id="breed"> ${breed} </div>
-                    <div class="text-md-left" id="weight"> ${weight} year </div>
+                    <div class="text-md-left" id="weight"> ${weight} kg </div>
                     <div class="text-md-left" id="vaccines"> ${vaccines}  </div>
                     <div class="text-md-left" id="speccond"> ${speccond} </div>
                 </div>
             </div>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#cond-modal">Adopt Animal</button>
+            <button id="adopt-btn" style="display:none" class="btn btn-primary" data-toggle="modal" data-target="#cond-modal">Adopt Animal</button>
         </div>
     </div>
 </div>
@@ -142,12 +143,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="rsv-form" data-uid="${sessionScope.user.id}">
                     <div class="form-group">
                         <label >Pick up Date</label>
                         <input type="datetime-local" class="form-control" id="date"placeholder="yyyy-mm-dd">
                     </div>
-                    <button type="submit" class="btn btn-primary" data-dismiss="modal" id="rsv-submit">Submit</button>
+                    <input type="submit" class="btn btn-primary" data-dismiss="modal" id="rsv-submit" data-pid="${id}" value="Submit"/>
                 </form>
             </div>
         </div>

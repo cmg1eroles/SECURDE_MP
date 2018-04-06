@@ -11,6 +11,8 @@ public class Adoption {
     @Column
     private Long adopterId;
     @Column
+    private Long animalId;
+    @Column
     private Long adminId;
     @Column
     private Date dateAdopted;
@@ -19,12 +21,13 @@ public class Adoption {
 
     public Adoption() {}
 
-    public Adoption(Long id, Long adopterId, Long adminId, Date dateAdopted, Long statusCode) {
+    public Adoption(Long id, Long adopterId, Long adminId, Date dateAdopted, Long statusCode, Long animalId) {
         this.id = id;
         this.adopterId = adopterId;
         this.adminId = adminId;
         this.dateAdopted = dateAdopted;
         this.statusCode = statusCode;
+        this.animalId = animalId;
     }
 
     public Long getId() {
@@ -66,6 +69,10 @@ public class Adoption {
     public void setStatusCode(Long statusCode) {
         this.statusCode = statusCode;
     }
+
+    public Long getAnimalId() { return animalId;}
+
+    public void setAnimalId(Long animalId) { this.animalId = animalId; }
 
     @Override
     public String toString() {

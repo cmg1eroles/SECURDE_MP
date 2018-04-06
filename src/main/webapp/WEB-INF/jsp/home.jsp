@@ -10,6 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/resources/css/general.css">
     <link rel="stylesheet" href="/resources/css/index-style.css">
+    <script src="/resources/js/home.js"></script>
+
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
@@ -17,45 +19,7 @@
     <form class="form">
         <input id="search_bar" class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search">
     </form>
-    <div class="cardcontainer">
-        <div class="card-deck">
-            <div class="card">
-                <img class="card-img-top" src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top"  src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top"  src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg" alt="Card image cap">
-            </div>
-        </div>
-    </div>
-    <div class="cardcontainer">
-        <div class="card-deck">
-            <div class="card">
-                <img class="card-img-top" src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top"  src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top"  src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg" alt="Card image cap">
-            </div>
-        </div>
-    </div>
-    <div class="cardcontainer">
-        <div class="card-deck">
-            <div class="card">
-                <img class="card-img-top" src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top"  src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg" alt="Card image cap">
-            </div>
-            <div class="card">
-                <img class="card-img-top"  src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg" alt="Card image cap">
-            </div>
-        </div>
-    </div>
+
 </div>
 <jsp:include page="login.jsp" />
 <jsp:include page="register.jsp" />

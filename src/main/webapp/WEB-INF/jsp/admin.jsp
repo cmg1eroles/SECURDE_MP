@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/resources/js/admin.js"></script>
     <link rel="stylesheet" href="/resources/css/admin-style.css">
 </head>
 <body>
@@ -42,30 +43,19 @@
                     <th>ID#</th>
                     <th>Type</th>
                     <th>Breed</th>
-                    <th>Age</th>
-                    <th>Status</th>
+                    <th>Weight(lbs)</th>
+                    <th>Picture Path</th>
                     <th>Vaccines</th>
                     <th>Special Conditions</th>
                     <th>Buttons</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#animal-modal">Edit</button>
-                        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#delete-modal">Delete</button>
-                    </td>
+                <tbody id="table_body">
 
                 </tbody>
             </table>
         </div>
+
         <div id="forums" class="container tab-pane fade"><br>
             <h3>Forums</h3>
             <table id="forum-table" class="table table-hover">
@@ -74,7 +64,6 @@
                     <th>ID#</th>
                     <th>Title</th>
                     <th>Creator</th>
-                    <th>Number of Members</th>
                     <th>Buttons</th>
                 </tr>
                 </thead>
@@ -84,6 +73,29 @@
                     <td>Cats vs. Dogs </td>
                     <td>Carlo </td>
                     <td>100</td>
+                    <td>
+                        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#deleteforum-modal">Delete</button>
+                    </td>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div id="users" class="container tab-pane fade"><br>
+            <h3>Users</h3>
+            <table id="user-table" class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID#</th>
+                    <th>Username</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Role Code</th>
+                    <th>Buttons</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
                     <td>
                         <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#deleteforum-modal">Delete</button>
                     </td>
@@ -102,21 +114,10 @@
                     <th>Animal Number</th>
                     <th>Date of Pick Up</th>
                     <th>Status</th>
-                    <th></th>
+                    <th>Buttons</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>1001</td>
-                    <td>Carlo</td>
-                    <td>102001</td>
-                    <td>2018-03-06</td>
-                    <td>To be Picked up</td>
-                    <td>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#edit-modal">Change Status</button>
-                        <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#deletetrans-modal">Cancel Transaction</button>
-                    </td>
-                </tr>
+                <tbody id="trans-body">
                 </tbody>
             </table>
         </div>
