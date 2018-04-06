@@ -1,20 +1,23 @@
 package ph.edu.dlsu.securde.SECURDE_MP.controller;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import org.hibernate.annotations.Any;
+import org.passay.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ph.edu.dlsu.securde.SECURDE_MP.model.User;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
+import ph.edu.dlsu.securde.SECURDE_MP.service.BruteForcePreventionService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,6 +28,8 @@ public class UserController {
     private UserRepository userRepository;
 
     private Gson gson = new Gson();
+
+    private BruteForcePreventionService bfpService = BruteForcePreventionService.getInstance();
 
     @GetMapping("/users")
     public List<User> getAllUsers() {
@@ -42,16 +47,53 @@ public class UserController {
     @PostMapping("/login")
     public HashMap<String, Object> loginUser(HttpServletRequest request, HttpServletResponse response,
                                              @Valid @RequestBody String loginform) throws IOException {
+        Date now = new Date();
         HashMap<String, Object> data = new HashMap();
         JSONObject json = new JSONObject(loginform);
-        List<User> user = userRepository.findByEmailAndPassword((String)json.get("username"), (String)json.get("password"));
-        if (user.isEmpty()) {
-            data.put("success", false);
+        List<User> user = userRepository.findByEmail((String)json.get("username"));
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        User u;
+
+        data.put("success", false);
+        if (user.isEmpty()) u = null; else u = user.get(0);
+        if (u == null) {
+            data.put("msg", "Invalid email or password!");
+        } else {
+            String email = u.getEmail();
+            Date timeOut = bfpService.getTimeOut(email);
+            if (now.before(timeOut)) {
+                data.put("msg", "timed-out");
+                data.put("timeout", (timeOut.getTime() - now.getTime())/1000);
+            } else {
+                if (!encoder.matches((String)json.get("password"), u.getPassword())) {
+                    data.put("msg", "Invalid email or password!");
+                    bfpService.addFailedAttempt(email);
+                    timeOut = bfpService.getTimeOut(email);
+                    if (now.before(timeOut)) {
+                        data.put("msg", "timed-out");
+                        data.put("timeout", (timeOut.getTime() - now.getTime())/1000);
+                    }
+                } else {
+                    bfpService.attemptSuccess(email);
+                    data.put("success", true);
+                    data.put("user", user.get(0));
+                    request.getSession().setAttribute("user", u);
+                }
+            }
+        }
+
+        /*(!encoder.matches((String)json.get("password"), u.getPassword())) {
+            data.put("msg", "Invalid email or password!");
+            if (!user.isEmpty()) {
+                String email = u.getEmail();
+                bfpService.addFailedAttempt(email);
+                Date timeOut = bfpService.getTimeOut(email);
+            }
         } else {
             data.put("success", true);
             data.put("user", user.get(0));
-            request.getSession().setAttribute("user", user.get(0));
-        }
+            request.getSession().setAttribute("user", u);
+        }*/
         return data;
     }
 
@@ -71,17 +113,24 @@ public class UserController {
 
         if (fName.equals("") || lName.equals("") || email.equals("") || uname.equals("") || pw.equals("") || confirm.equals("")) {
             data.put("msg", "Please fill out all fields.");
+        } else if (!userRepository.findByEmail(email).isEmpty()) {
+            data.put("msg", "A user with this email already exists!");
         } else if (!pw.equals(confirm)) {
             data.put("msg", "Passwords do not match!");
         } else {
             Long id = userRepository.newId();
-            User u = userRepository.save(new User(id, fName, lName, uname, pw, email, "", 0L));
-            if (u != null) {
-                data.put("msg", "success");
-                data.put("user", u);
-                request.getSession().setAttribute("user", u);
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            if (passwordIsValid(pw)) {
+                pw = encoder.encode(pw);
+                User u = userRepository.save(new User(id, fName, lName, uname, pw, email, "", 0L));
+                if (u != null) {
+                    data.put("msg", "success");
+                    data.put("user", u);
+                    request.getSession().setAttribute("user", u);
+                }
+                else data.put("msg", "User Registration failed!");
             }
-            else data.put("msg", "User Registration failed!");
+            else data.put("msg", "Password must be 8 to 30 characters long, have at least 1 uppercase, 1 lowercase, 1 numeric, 1 special character, and no whitespaces");
         }
 
         return data;
@@ -146,7 +195,8 @@ public class UserController {
             data.put("msg", "Please fill out all fields.");
         } else {
             User user = userRepository.findOne(id);
-            if (user.getPassword().equals(pword)) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            if (encoder.matches(pword, user.getPassword())) {
                 user.setUsername(uname);
                 user.setFirstName(fName);
                 user.setLastName(lName);
@@ -163,5 +213,21 @@ public class UserController {
         }
 
         return data;
+    }
+
+    private boolean passwordIsValid(String password) {
+        PasswordValidator validator = new PasswordValidator(Arrays.asList(
+                new LengthRule(8, 30),
+                new CharacterRule(EnglishCharacterData.UpperCase, 1),
+                new CharacterRule(EnglishCharacterData.LowerCase, 1),
+                new CharacterRule(EnglishCharacterData.Digit, 1),
+                new CharacterRule(EnglishCharacterData.Special, 1),
+                new WhitespaceRule()
+        ));
+        RuleResult result = validator.validate(new PasswordData(password));
+        if (result.isValid()) {
+            return true;
+        }
+        return false;
     }
 }

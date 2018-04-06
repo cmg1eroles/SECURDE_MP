@@ -34,7 +34,7 @@
                         <label for="reg_confirm">Confirm Password</label>
                         <input type="password" class="form-control" id="reg_confirm" placeholder="Confirm Password">
                     </div>
-                    <!-- <input id="btn_register" type="submit" class="btn btn-primary" value="Register"/> -->
+                    <p id="reg-form-msg" class="msg-error"></p>
                     <button class = "btn btn-primary" id ="btn_register" type="submit">Register</button>
                 </form>
             </div>

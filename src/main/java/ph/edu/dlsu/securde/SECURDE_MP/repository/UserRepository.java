@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
-    List<User> findByEmailAndPassword(String username, String password);
+    List<User> findByEmail(String email);
 
     @Query(value = "SELECT COALESCE(MAX(id), 0)+1 FROM user", nativeQuery = true)
     public Long newId();
