@@ -1,3 +1,5 @@
+var time
+
 $(document).ready(function() {
 
     if ($("#nav-username").text() == "") {
@@ -21,7 +23,12 @@ $(document).ready(function() {
                 if (response.success) {
                     location.reload()
                 }
-                else $("#login-form-msg").text(response.msg)
+                else {
+                    if (response.msg == "timed-out") {
+                        time = response.timeout
+                        setTimer()
+                    } else $("#login-form-msg").text(response.msg)
+                }
             }
         })
     })
@@ -60,4 +67,20 @@ function logout() {
             location.reload()
         }
     })
+}
+
+function setTimer() {
+    var minutes = Math.floor(time/60)
+    var seconds = time % 60
+    var msg = "You have too many failed attempts! Try again in"
+    if (minutes > 0)
+        msg += " " + minutes + "m"
+    if (seconds > 0)
+        msg += " " + seconds + "s"
+    msg += "."
+    $("#login-form-msg").text(msg)
+    time--
+    if (time > 0)
+        setTimeout(setTimer, 1000)
+    else $("#login-form-msg").text("")
 }

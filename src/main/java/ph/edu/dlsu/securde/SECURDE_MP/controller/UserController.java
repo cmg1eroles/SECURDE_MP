@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ph.edu.dlsu.securde.SECURDE_MP.model.User;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
+import ph.edu.dlsu.securde.SECURDE_MP.service.BruteForcePreventionService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,6 +28,8 @@ public class UserController {
     private UserRepository userRepository;
 
     private Gson gson = new Gson();
+
+    private BruteForcePreventionService bfpService = BruteForcePreventionService.getInstance();
 
     @GetMapping("/users")
     public List<User> getAllUsers() {
@@ -43,18 +47,53 @@ public class UserController {
     @PostMapping("/login")
     public HashMap<String, Object> loginUser(HttpServletRequest request, HttpServletResponse response,
                                              @Valid @RequestBody String loginform) throws IOException {
+        Date now = new Date();
         HashMap<String, Object> data = new HashMap();
         JSONObject json = new JSONObject(loginform);
         List<User> user = userRepository.findByEmail((String)json.get("username"));
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        if (user.isEmpty() || !encoder.matches((String)json.get("password"), user.get(0).getPassword())) {
-            data.put("success", false);
+        User u;
+
+        data.put("success", false);
+        if (user.isEmpty()) u = null; else u = user.get(0);
+        if (u == null) {
             data.put("msg", "Invalid email or password!");
+        } else {
+            String email = u.getEmail();
+            Date timeOut = bfpService.getTimeOut(email);
+            if (now.before(timeOut)) {
+                data.put("msg", "timed-out");
+                data.put("timeout", (timeOut.getTime() - now.getTime())/1000);
+            } else {
+                if (!encoder.matches((String)json.get("password"), u.getPassword())) {
+                    data.put("msg", "Invalid email or password!");
+                    bfpService.addFailedAttempt(email);
+                    timeOut = bfpService.getTimeOut(email);
+                    if (now.before(timeOut)) {
+                        data.put("msg", "timed-out");
+                        data.put("timeout", (timeOut.getTime() - now.getTime())/1000);
+                    }
+                } else {
+                    bfpService.attemptSuccess(email);
+                    data.put("success", true);
+                    data.put("user", user.get(0));
+                    request.getSession().setAttribute("user", u);
+                }
+            }
+        }
+
+        /*(!encoder.matches((String)json.get("password"), u.getPassword())) {
+            data.put("msg", "Invalid email or password!");
+            if (!user.isEmpty()) {
+                String email = u.getEmail();
+                bfpService.addFailedAttempt(email);
+                Date timeOut = bfpService.getTimeOut(email);
+            }
         } else {
             data.put("success", true);
             data.put("user", user.get(0));
-            request.getSession().setAttribute("user", user.get(0));
-        }
+            request.getSession().setAttribute("user", u);
+        }*/
         return data;
     }
 
