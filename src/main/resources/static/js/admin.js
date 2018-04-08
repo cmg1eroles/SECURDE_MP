@@ -3,7 +3,7 @@ $(document).ready(function() {
     //Get Animals
     $.ajax({
         method: 'GET',
-        url: '/posts/adoptions',
+        url: '/animal/adoptions',
         contentType: 'application/json',
         success: function(response) {
 
@@ -20,7 +20,9 @@ $(document).ready(function() {
                 var deletebtn = document.createElement('button')
                 var tr = document.createElement('tr')
 
-                $(editbtn).addClass('btn btn-success')
+                $(editbtn).addClass('btn btn-success animalEdit')
+                $(editbtn).attr('data-toggle', "modal")
+                $(editbtn).attr('data-target', "#animal-modal")
                 $(editbtn).attr('data-pid', response[i].id)
                 $(editbtn).text('Edit')
 
@@ -123,9 +125,11 @@ $(document).ready(function() {
                 var rolebtn = document.createElement('button')
                 var tr = document.createElement('tr')
 
-                $(rolebtn).addClass('btn btn-success')
-                $(rolebtn).attr('data-tid', response[i].id)
-                $(rolebtn).text('Make Admin')
+                $(rolebtn).addClass('btn btn-success userEdit')
+                $(rolebtn).attr('data-uid', response[i].id)
+                $(rolebtn).attr('data-toggle', "modal")
+                $(rolebtn).attr('data-target', "#editUser-modal")
+                $(rolebtn).text('Edit')
 
                 $(id).text(response[i].id);
                 $(username).text(response[i].username);
@@ -181,6 +185,44 @@ $(document).ready(function() {
                 $(tr).append(buttons)
 
                 $('#forums-body').append(tr)
+            }
+        }
+    })
+    //populate the type drop down
+    $.ajax({
+        method: 'GET',
+        url: '/animal/types',
+        contentType: 'application/json',
+        success: function(response) {
+            console.log('types : ' +response.length)
+            for (var i = 0; i < response.length; i++) {
+                $("#type_dd").append('<option value=' +response[i].code  + '>' + response[i].animalType + '</option>');
+            }
+        }
+    })
+
+    //populate the breed drop down
+    $.ajax({
+        method: 'GET',
+        url: '/animal/breeds',
+        contentType: 'application/json',
+        success: function(response) {
+            console.log('breeds :' +response.length )
+            for (var i = 0; i < response.length; i++) {
+                $("#breed_dd").append('<option value=' +response[i].code  + '>' + response[i].breed + '</option>');
+            }
+        }
+    })
+
+    //populate the status drop down
+    $.ajax({
+        method: 'GET',
+        url: '/animal/status',
+        contentType: 'application/json',
+        success: function(response) {
+            console.log('status :' +response.length )
+            for (var i = 0; i < response.length; i++) {
+                $("#status_dd").append('<option value=' +response[i].code  + '>' + response[i].status + '</option>');
             }
         }
     })

@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="/resources/js/admin.js"></script>
+    <script src="/resources/js/admin-functions.js"></script>
     <link rel="stylesheet" href="/resources/css/admin-style.css">
 </head>
 <body>
@@ -123,14 +124,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="addForm">
                     <div class="form-group">
                         <label > Type </label>
                         <select id="type_dd"class="form-control">
-                            <option> --</option>
-                            <option>Cat</option>
-                            <option>Dog</option>
-
+                            <option> -- </option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -140,14 +138,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label > Age </label>
-                        <input type="text" class="form-control" id="reg_age" placeholder="Age">
-                    </div>
-                    <div class="form-group">
-                        <label> Status </label>
-                        <select id="status_dd" class="form-control">
-                            <option> --</option>
-                        </select>
+                        <label > Weight </label>
+                        <input type="text" class="form-control" id="reg_weight" placeholder="Weight">
                     </div>
                     <div class="form-group">
                         <label >Vaccines </label>
@@ -157,7 +149,12 @@
                         <label >Special Conditions</label>
                         <input type="text" class="form-control" id="reg_conditions" placeholder="Special Conditions">
                     </div>
-                    <input id="btn_register" type="submit" class="btn btn-primary" value="Register"/>
+                    <div class="form-group">
+                        <label>Display Picture</label>
+                        <input type="file" class="form-control-file" id="reg_picpath">
+                    </div>
+                    <input id="btn_register" type="submit"
+                           class="btn btn-primary" data-uid="${sessionScope.user.username}"value="Register"/>
                 </form>
             </div>
         </div>
@@ -174,32 +171,31 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>                                                                                                                       </form>
+                <form id="editAnimalForm">                                                                                                                       </form>
                     <div class="form-group">
-                        <label > Age </label>
-                        <input type="text" class="form-control" id="edit_age" placeholder="Age">
-                    </div>
-                    <div class="form-group">
-                        <label> Status </label>
-                        <select id="edit_dd" class="form-control">
-                            <option> --</option>
-                        </select>
+                        <label > Weight </label>
+                        <input type="text" class="form-control" id="edit_weight" placeholder="${weight}">
                     </div>
                     <div class="form-group">
                         <label >Vaccines </label>
-                        <input type="text" class="form-control" id="edit_vaccines" placeholder="Vaccines">
+                        <input type="text" class="form-control" id="edit_vaccines" placeholder="${vaccines}">
                     </div>
                     <div class="form-group">
                         <label >Special Conditions</label>
-                        <input type="text" class="form-control" id="edit_conditions" placeholder="Special Conditions">
+                        <input type="text" class="form-control" id="edit_conditions" placeholder="${conditions}">
+                    </div>
+                    <div class="form-group">
+                        <label>Display Picture</label>
+                        <input type="file" class="form-control-file" id="edit_picpath" placeholder="${picpath}">
                     </div>
                     <input id="btn_edit" type="submit" class="btn btn-primary" value="Register"/>
                 </form>
+                <div id="reg-form-msg"> </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Edit Modal -->
+<!-- Edit Transaction Modal -->
 <div class="modal fade" id="edit-modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -218,6 +214,46 @@
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit User Modal -->
+<div class="modal fade" id="editUser-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label> User Status </label>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="enableUser" value=""name="userStatus" class="custom-control-input">
+                            <label class="custom-control-label" for="enableUser"> Enable User </label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="disableUser" value="" name="userStatus" class="custom-control-input">
+                            <label class="custom-control-label" for="disableUser"> Disable User </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label> User Position</label>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="regular" name="userPosition" value="0" class="custom-control-input">
+                            <label class="custom-control-label" for="regular"> Regular User </label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="admin" name="userPosition" value="1" class="custom-control-input">
+                            <label class="custom-control-label" for="admin"> Make Admin </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary updateUser">Submit</button>
                 </form>
             </div>
         </div>
@@ -283,5 +319,6 @@
         </div>
     </div>
 </div>
+
 </body>
 </html>
