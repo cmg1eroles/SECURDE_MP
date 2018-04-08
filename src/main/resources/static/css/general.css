@@ -28,3 +28,6 @@
         .msg-error {
             color: red;
         }
+        .msg-success {
+            color: green;
+        }

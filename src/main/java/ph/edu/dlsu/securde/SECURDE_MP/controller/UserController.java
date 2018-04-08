@@ -161,13 +161,16 @@ public class UserController {
             data.put("msg", "Passwords do not match!");
         } else if (request.getSession(false) != null) {
             User user = (User) request.getSession(false).getAttribute("user");
-            if (oPsw.equals(user.getPassword())) {
-                user.setPassword(nPsw);
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            if (!passwordIsValid(nPsw)) {
+                data.put("msg", "Password must be 8 to 30 characters long, have at least 1 uppercase, 1 lowercase, 1 numeric, 1 special character, and no whitespaces");
+            } else if (!encoder.matches(oPsw, user.getPassword())) {
+                data.put("msg", "Incorrect password!");
+            } else {
+                user.setPassword(encoder.encode(nPsw));
                 userRepository.save(user);
                 data.put("msg", "Password successfully changed!");
                 data.put("success", true);
-            } else {
-                data.put("msg", "Incorrect password!");
             }
         } else {
             data.put("msg", "No user is logged in!");
@@ -191,7 +194,7 @@ public class UserController {
         String desc = (String)json.get("description");
         String pword = (String)json.get("password");
 
-        if (uname.equals("") || fName.equals("") || lName.equals("") || email.equals("") || desc.equals("") || pword.equals("")) {
+        if (uname.equals("") || fName.equals("") || lName.equals("") || email.equals("") || pword.equals("")) {
             data.put("msg", "Please fill out all fields.");
         } else {
             User user = userRepository.findOne(id);

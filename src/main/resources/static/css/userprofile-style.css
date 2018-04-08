@@ -5,3 +5,6 @@
        .mx-auto { 
            margin: 10px;
         }
+       #btn-edit-profile {
+           display: none;
+       }
