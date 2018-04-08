@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $.ajax({
         method: 'GET',
-        url: '/posts/adoptions',
+        url: '/animal/adoptions',
         contentType: 'application/json',
         success: function(response) {
             for (var i = 0 ; i < response.length ; i++) {
