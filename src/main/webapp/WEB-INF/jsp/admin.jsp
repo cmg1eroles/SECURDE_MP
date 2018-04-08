@@ -174,21 +174,17 @@
                 <form id="editAnimalForm">                                                                                                                       </form>
                     <div class="form-group">
                         <label > Weight </label>
-                        <input type="text" class="form-control" id="edit_weight" placeholder="${weight}">
+                        <input type="text" class="form-control" id="edit_weight" >
                     </div>
                     <div class="form-group">
                         <label >Vaccines </label>
-                        <input type="text" class="form-control" id="edit_vaccines" placeholder="${vaccines}">
+                        <input type="text" class="form-control" id="edit_vaccines" >
                     </div>
                     <div class="form-group">
                         <label >Special Conditions</label>
-                        <input type="text" class="form-control" id="edit_conditions" placeholder="${conditions}">
+                        <input type="text" class="form-control" id="edit_conditions">
                     </div>
-                    <div class="form-group">
-                        <label>Display Picture</label>
-                        <input type="file" class="form-control-file" id="edit_picpath" placeholder="${picpath}">
-                    </div>
-                    <input id="btn_edit" type="submit" class="btn btn-primary" value="Register"/>
+                    <button id="btn_edit" type="submit" class="btn btn-primary" /> Save Changes </button>
                 </form>
                 <div id="reg-form-msg"> </div>
             </div>
@@ -196,7 +192,7 @@
     </div>
 </div>
 <!-- Edit Transaction Modal -->
-<div class="modal fade" id="edit-modal">
+<div class="modal fade" id="editTrans-modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -210,10 +206,10 @@
                     <div class="form-group">
                         <label >Status</label>
                         <select id="editstatus_dd" class="form-control">
-                            <option> --</option>
+                            <option> -- </option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button id="trans_save" type="submit" class="btn btn-primary transUpdate">Submit</button>
                 </form>
             </div>
         </div>
@@ -259,7 +255,7 @@
         </div>
     </div>
 </div>
-<!--Delete Modal -->
+<!--Delete Animal Modal -->
 <div class="modal" tabindex="-1" role="dialog" id="delete-modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -273,7 +269,7 @@
                 <p> Are you sure you want to delete? </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button id="animalDelete" type="button" class="btn btn-danger ">Delete</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -293,27 +289,7 @@
                 <p> Are you sure you want to delete? </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger">Delete</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--Delete Transaction  Modal -->
-<div class="modal" tabindex="-1" role="dialog" id="deletetrans-modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Delete animal </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p> Are you sure you want to delete? </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button id="forumDelete"type="button" class="btn btn-danger">Delete</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

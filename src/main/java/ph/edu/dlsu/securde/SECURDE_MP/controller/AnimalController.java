@@ -91,7 +91,7 @@ public class AnimalController {
 
     @PostMapping("/animal/{id}")
     public HashMap<String, Object> updateAnimal(HttpServletRequest request, HttpServletResponse response,
-                                                @Valid @RequestBody String addForm) {
+                                                @Valid @RequestBody String addForm, @PathVariable Long id) {
         HashMap<String, Object> data = new HashMap();
 
         JSONObject json = new JSONObject(addForm);
@@ -104,7 +104,6 @@ public class AnimalController {
                 || speccond.equals("")) {
             data.put("msg", "Please fill out all fields.");
         } else {
-            Long id = animalDetailsRepository.newId();
             long adminId = 2;
             AnimalDetails animal = animalDetailsRepository.findOne(id);
             if (animal != null) {
@@ -116,6 +115,15 @@ public class AnimalController {
                 data.put("msg", "Animal information successfully updated!");
             }
         }
+        return data;
+    }
+
+    @DeleteMapping("/animal/{id}")
+    public HashMap<String, Object> deleteAnimal(@PathVariable Long id) {
+        HashMap<String, Object> data = new HashMap();
+
+        animalDetailsRepository.delete(id);
+        data.put("success", true);
         return data;
     }
 }

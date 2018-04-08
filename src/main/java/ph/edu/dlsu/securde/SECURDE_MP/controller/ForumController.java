@@ -3,10 +3,7 @@ package ph.edu.dlsu.securde.SECURDE_MP.controller;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ph.edu.dlsu.securde.SECURDE_MP.model.*;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.CommentRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.ForumPostRepository;
@@ -14,6 +11,7 @@ import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -43,7 +41,7 @@ public class ForumController {
     }
 
     @RequestMapping("/forums/{id}")
-    public List<ForumComment> getForumComments(@PathVariable(value="id") Long id, ModelMap model) {
+    public List<ForumComment> getForumComments(@PathVariable(value="id") Long id) {
         List<Comment> comments = commentRepository.findByForumId(id);
         List<ForumComment> forumPosts = new ArrayList<ForumComment>();
 
@@ -58,6 +56,18 @@ public class ForumController {
             ));
         }
         return forumPosts;
+    }
+
+    @DeleteMapping("/forums/{id}")
+    public HashMap<String, Object> deleteAnimal(@PathVariable Long id) {
+        HashMap<String, Object> data = new HashMap();
+
+        List<ForumComment> comments = getForumComments(id);
+        forumPostRepository.delete(id);
+        for(int i = 0; i < comments.size(); i++)
+            commentRepository.delete(comments.get(i).getId());
+        data.put("success", true);
+        return data;
     }
 }
 
