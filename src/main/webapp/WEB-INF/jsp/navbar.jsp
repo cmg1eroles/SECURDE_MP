@@ -26,7 +26,7 @@
         <div id="loggedIn" class="inline" style="display:none">
             <ul class="nav justify-content inline">
                 <li class="nav-item">
-                    <a id="nav-username" class="nav-link active" href="/home">${sessionScope.user.username}</a>
+                    <a id="nav-username" class="nav-link active" href="/profile/${sessionScope.user.id}" data-uid="${sessionScope.user.id}">${sessionScope.user.username}</a>
                 </li>
                 <li>
                     <button class="btn btn-outline-success my-2 my-sm-0" id="logoutbtn" type="submit">
