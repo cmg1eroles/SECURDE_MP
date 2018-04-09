@@ -122,7 +122,7 @@ public class UserController {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             if (passwordIsValid(pw)) {
                 pw = encoder.encode(pw);
-                User u = userRepository.save(new User(id, fName, lName, uname, pw, email, "", 0L));
+                User u = userRepository.save(new User(id, fName, lName, uname, pw, email, "", 0L, true));
                 if (u != null) {
                     data.put("msg", "success");
                     data.put("user", u);
@@ -214,6 +214,24 @@ public class UserController {
                 data.put("msg", "Incorrect password!");
             }
         }
+
+        return data;
+    }
+
+    @PostMapping("/user/{id}/access")
+    public HashMap<String, Object> changeUserAccessControl(@PathVariable(value="id") Long id,
+                                                           @Valid @RequestBody String form) {
+        HashMap<String, Object> data = new HashMap<>();
+
+        JSONObject json = new JSONObject(form);
+        Boolean enabled = Boolean.valueOf((String)json.get("enabled"));
+        Long type = Long.valueOf((String)json.get("type"));
+        User user = userRepository.findOne(id);
+        user.setEnabled(enabled);
+        user.setRoleCode(type);
+        userRepository.save(user);
+
+        data.put("success", true);
 
         return data;
     }
