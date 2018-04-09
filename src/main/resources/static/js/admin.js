@@ -26,7 +26,7 @@ $(document).ready(function() {
                 $(editbtn).attr('data-pid', response[i].id)
                 $(editbtn).text('Edit')
 
-                $(deletebtn).addClass('btn btn-danger')
+                $(deletebtn).addClass('btn btn-danger animalConfirm')
                 $(deletebtn).attr('data-toggle', "modal")
                 $(deletebtn).attr('data-target', "#delete-modal")
                 $(deletebtn).attr('data-pid', response[i].id)
@@ -75,15 +75,11 @@ $(document).ready(function() {
                 var cancelbtn = document.createElement('button')
                 var tr = document.createElement('tr')
 
-                $(statusbtn).addClass('btn btn-success')
+                $(statusbtn).addClass('btn btn-success transEdit')
                 $(statusbtn).attr('data-tid', response[i].id)
+                $(statusbtn).attr('data-toggle', "modal")
+                $(statusbtn).attr('data-target', "#editTrans-modal")
                 $(statusbtn).text('Change Status')
-
-                $(cancelbtn).addClass('btn btn-danger')
-                $(cancelbtn).attr('data-toggle', "modal")
-                $(cancelbtn).attr('data-target', "#deletetrans-modal")
-                $(cancelbtn).attr('data-tid', response[i].id)
-                $(cancelbtn).text('Cancel Transaction')
 
                 $(id).text(response[i].id);
                 $(adopter).text(response[i].adopterId);
@@ -113,9 +109,7 @@ $(document).ready(function() {
         url: '/users',
         contentType: 'application/json',
         success: function(response) {
-            console.log("Users: ")
             for (var i = 0 ; i < response.length ; i++) {
-                console.log(response.length)
                 var id = document.createElement('td')
                 var username = document.createElement('td')
                 var firstname = document.createElement('td')
@@ -158,9 +152,7 @@ $(document).ready(function() {
         url: '/forums',
         contentType: 'application/json',
         success: function(response) {
-            console.log("Forum")
             for (var i = 0 ; i < response.length ; i++) {
-                console.log("Forum length: " +response.length)
                 var id = document.createElement('td')
                 var title = document.createElement('td')
                 var creator = document.createElement('td')
@@ -168,8 +160,10 @@ $(document).ready(function() {
                 var deletebtn = document.createElement('button')
                 var tr = document.createElement('tr')
 
-                $(deletebtn).addClass('btn btn-danger')
-                $(deletebtn).attr('data-tid', response[i].id)
+                $(deletebtn).addClass('btn btn-danger forumConfirm')
+                $(deletebtn).attr('data-fid', response[i].id)
+                $(deletebtn).attr('data-toggle', "modal")
+                $(deletebtn).attr('data-target', "#deleteforum-modal")
                 $(deletebtn).text('Delete Forum')
 
                 $(id).text(response[i].id);
@@ -188,13 +182,13 @@ $(document).ready(function() {
             }
         }
     })
+
     //populate the type drop down
     $.ajax({
         method: 'GET',
         url: '/animal/types',
         contentType: 'application/json',
         success: function(response) {
-            console.log('types : ' +response.length)
             for (var i = 0; i < response.length; i++) {
                 $("#type_dd").append('<option value=' +response[i].code  + '>' + response[i].animalType + '</option>');
             }
@@ -207,7 +201,6 @@ $(document).ready(function() {
         url: '/animal/breeds',
         contentType: 'application/json',
         success: function(response) {
-            console.log('breeds :' +response.length )
             for (var i = 0; i < response.length; i++) {
                 $("#breed_dd").append('<option value=' +response[i].code  + '>' + response[i].breed + '</option>');
             }
@@ -220,9 +213,10 @@ $(document).ready(function() {
         url: '/animal/status',
         contentType: 'application/json',
         success: function(response) {
-            console.log('status :' +response.length )
+            console.log("status: " +response.length)
             for (var i = 0; i < response.length; i++) {
                 $("#status_dd").append('<option value=' +response[i].code  + '>' + response[i].status + '</option>');
+                $("#editstatus_dd ").append('<option value=' +response[i].code  + '>' + response[i].status + '</option>');
             }
         }
     })
