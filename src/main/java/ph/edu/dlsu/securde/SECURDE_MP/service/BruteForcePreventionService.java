@@ -11,6 +11,8 @@ public class BruteForcePreventionService {
 
     private HashMap<String, Object> attempts = new HashMap<>();
 
+    private BruteForcePreventionService() {}
+
     public static BruteForcePreventionService getInstance() {
         return instance;
     }

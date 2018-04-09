@@ -56,6 +56,20 @@ $(document).ready(function() {
             }
         })
     })
+
+    $('#login-modal').on('hidden.bs.modal', function (e) {
+        $("#login_email").val("")
+        $("#login_password").val("")
+    })
+
+    $('#register-modal').on('hidden.bs.modal', function (e) {
+        $("#reg_email").val("")
+        $("#reg_uname").val("")
+        $("#reg_fname").val("")
+        $("#reg_lname").val("")
+        $("#reg_password").val("")
+        $("#reg_confirm").val("")
+    })
 })
 
 function logout() {

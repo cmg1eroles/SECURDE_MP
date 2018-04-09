@@ -68,6 +68,7 @@
 <jsp:include page="login.jsp" />
 <!-- Register Modal -->
 <jsp:include page="register.jsp" />
+<jsp:include page="forgotpassword.jsp" />
 <!-- Edit Profile Modal -->
 <div class="modal fade" id="edit-modal">
     <div class="modal-dialog" role="document">

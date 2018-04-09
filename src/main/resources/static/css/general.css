@@ -31,3 +31,10 @@
         .msg-success {
             color: green;
         }
+        #forgotPwLink {
+            text-decoration: underline;
+            color: purple;
+        }
+        #forgotPwLink:hover {
+            cursor: pointer;
+        }

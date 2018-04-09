@@ -11,6 +11,7 @@ import ph.edu.dlsu.securde.SECURDE_MP.model.User;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.RoleRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.service.BruteForcePreventionService;
+import ph.edu.dlsu.securde.SECURDE_MP.service.ForgotPasswordService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,8 @@ public class UserController {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private ForgotPasswordService fpwService;
 
     private Gson gson = new Gson();
 
@@ -244,6 +247,31 @@ public class UserController {
                 user.setEnabled(enabled);
                 user.setRoleCode(type);
                 userRepository.save(user);
+                data.put("success", true);
+            }
+        }
+        return data;
+    }
+
+    @PostMapping("/password/reset")
+    public HashMap<String, Object> resetPassword(@Valid @RequestBody String form) {
+
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("success", false);
+
+        JSONObject json = new JSONObject(form);
+        String email = (String)json.get("email");
+
+        List<User> users = userRepository.findByEmail(email);
+        if (users.isEmpty()) {
+            data.put("msg", "This email is invalid!");
+        } else {
+            User u = users.get(0);
+            //ForgotPasswordService forgotPwService = ForgotPasswordService.getInstance();
+            if (!fpwService.forgotPassword(u)) {
+                data.put("msg", "Error in reseting password!");
+            } else {
+                data.put("msg", "Your password has been reset! Please check your email.");
                 data.put("success", true);
             }
         }
