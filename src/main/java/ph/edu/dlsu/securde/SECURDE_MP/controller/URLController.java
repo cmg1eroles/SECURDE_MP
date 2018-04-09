@@ -5,11 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import ph.edu.dlsu.securde.SECURDE_MP.model.*;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.*;
-
-import java.util.List;
+import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalDetails;
+import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalType;
+import ph.edu.dlsu.securde.SECURDE_MP.model.Breed;
+import ph.edu.dlsu.securde.SECURDE_MP.model.User;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class URLController {
@@ -26,24 +29,35 @@ public class URLController {
     private CommentRepository commentRepository;
     @Autowired
     private ForumPostRepository forumPostRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @RequestMapping("/home")
-    public String goToHome(ModelMap model) {
-        return "home";
+    public String goToHome(HttpServletRequest request, ModelMap model) {
+        HttpSession ses = request.getSession(false);
+        if (ses == null)
+            return "home";
+        else {
+            User u = (User) ses.getAttribute("user");
+            if (u == null || u.getRoleCode() != roleRepository.findRoleByRole("ADMIN").getCode()) {
+                return "home";
+            } else {
+                return "admin";
+            }
+        }
     }
-    @RequestMapping("/forum")
-    public String goToForum(ModelMap model) { return "forum"; }
+
     @RequestMapping("/admin")
-    public String goToAdmin(ModelMap model) {
-        return "admin";
+    public String goToAdminView(HttpServletRequest request, ModelMap model) {
+        return goToHome(request, model);
     }
 
     @RequestMapping("/forumpage/{id}")
     public String goToForumPage(@PathVariable(value="id") Long id, ModelMap model) {
         ForumPost forum = forumPostRepository.findOne(id);
         User user = userRepository.findOne(forum.getPosterId());
-        model.put("title",forum.getTitle());
-        model.put("firstname",user.getFirstName() );
+        model.put("title", forum.getTitle());
+        model.put("firstname", user.getFirstName());
         model.put("lastname", user.getLastName());
         model.put("date", forum.getPostDate());
         model.put("forumId", forum.getId());
@@ -51,6 +65,9 @@ public class URLController {
         System.out.println(model.get("forumId"));
         return "forumpage";
     }
+    @RequestMapping("/forum")
+    public String goToForum(ModelMap model) { return "forum"; }
+
     @RequestMapping("/pet/{id}")
     public String pet(@PathVariable(value="id") Long id, ModelMap model) {
         AnimalDetails adopt = animalDetailsRepository.findOne(id);

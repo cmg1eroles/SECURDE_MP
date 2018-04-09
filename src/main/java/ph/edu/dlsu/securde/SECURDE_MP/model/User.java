@@ -23,10 +23,12 @@ public class User {
     private String description;
     @Column
     private Long roleCode;
+    @Column
+    private Boolean enabled;
 
     public User() {}
 
-    public User(Long id, String firstName, String lastName, String username, String password, String email, String description, Long roleCode) {
+    public User(Long id, String firstName, String lastName, String username, String password, String email, String description, Long roleCode, Boolean enabled) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -35,6 +37,7 @@ public class User {
         this.email = email;
         this.description = description;
         this.roleCode = roleCode;
+        this.enabled = enabled;
     }
 
     public Long getId() {
@@ -101,6 +104,14 @@ public class User {
         this.roleCode = roleCode;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -112,6 +123,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", description='" + description + '\'' +
                 ", roleCode=" + roleCode +
+                ", enabled=" + enabled +
                 '}';
     }
 }

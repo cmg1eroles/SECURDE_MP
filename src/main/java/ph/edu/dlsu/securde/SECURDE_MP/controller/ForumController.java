@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import ph.edu.dlsu.securde.SECURDE_MP.model.*;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.CommentRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.ForumPostRepository;
+import ph.edu.dlsu.securde.SECURDE_MP.repository.RoleRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -29,6 +31,8 @@ public class ForumController {
     private CommentRepository commentRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @PostMapping("/forums/new")
     public HashMap<String, Object> addForum(HttpServletRequest request, HttpServletResponse response,
@@ -113,14 +117,26 @@ public class ForumController {
     }
 
     @DeleteMapping("/forums/{id}")
-    public HashMap<String, Object> deleteAnimal(@PathVariable Long id) {
+    public HashMap<String, Object> deleteAnimal(HttpServletRequest request, @PathVariable Long id) {
         HashMap<String, Object> data = new HashMap();
 
-        List<ForumComment> comments = getForumComments(id);
-        forumPostRepository.delete(id);
-        for(int i = 0; i < comments.size(); i++)
-            commentRepository.delete(comments.get(i).getId());
-        data.put("success", true);
+        HttpSession ses = request.getSession(false);
+        if (ses == null) {
+            data.put("success", false);
+            data.put("msg", "You are unauthorized to commit this action!");
+        } else {
+            User u = (User) ses.getAttribute("user");
+            if (u == null || u.getRoleCode() != roleRepository.findRoleByRole("ADMIN").getCode()) {
+                data.put("success", false);
+                data.put("msg", "You are unauthorized to commit this action!");
+            } else {
+                List<ForumComment> comments = getForumComments(id);
+                forumPostRepository.delete(id);
+                for(int i = 0; i < comments.size(); i++)
+                    commentRepository.delete(comments.get(i).getId());
+                data.put("success", true);
+            }
+        }
         return data;
     }
 

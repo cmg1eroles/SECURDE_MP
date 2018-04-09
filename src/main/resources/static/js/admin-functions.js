@@ -91,7 +91,7 @@ $(document).ready(function() {
                     else {
                         $("#admin").prop("checked", true);
                     }
-                    if ( 1 == 1 /* insert user is enabled */) {
+                    if (response.enabled) {
                         $("#enableUser").prop("checked", true);
                     }
                     else {

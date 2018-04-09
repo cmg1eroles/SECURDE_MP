@@ -8,8 +8,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/resources/js/login.js"></script>
     <script src="/resources/js/admin.js"></script>
     <script src="/resources/js/admin-functions.js"></script>
+    <script src="/resources/js/manageusers.js"></script>
     <link rel="stylesheet" href="/resources/css/admin-style.css">
 </head>
 <body>
@@ -31,8 +33,9 @@
             <a class="nav-link" data-toggle="tab" href="#transactions">Transactions</a>
         </li>
         <li class="nav-item">
-            <button type="button" class="btn btn-primary">Logout</button>
+            <button type="button" class="btn btn-primary" onclick="logout()">Logout</button>
         </li>
+        <li id="loggedIn" class="nav-item" data-uid="${sessionScope.user.id}" hidden></li>
     </ul>
 
     <!-- Tab panes -->
@@ -226,15 +229,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="editUserForm">
                     <div class="form-group">
                         <label> User Status </label>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="enableUser" value=""name="userStatus" class="custom-control-input">
+                            <input type="radio" id="enableUser" value="true" name="userStatus" class="custom-control-input">
                             <label class="custom-control-label" for="enableUser"> Enable User </label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="disableUser" value="" name="userStatus" class="custom-control-input">
+                            <input type="radio" id="disableUser" value="false" name="userStatus" class="custom-control-input">
                             <label class="custom-control-label" for="disableUser"> Disable User </label>
                         </div>
                     </div>
