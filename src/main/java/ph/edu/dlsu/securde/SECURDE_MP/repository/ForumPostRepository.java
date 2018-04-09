@@ -13,8 +13,5 @@ public interface ForumPostRepository extends JpaRepository<ForumPost , Long> {
     @Query(value = "SELECT COALESCE(MAX(id), 0)+1 FROM forum_post", nativeQuery = true)
     public Long newId();
 
-   // @Query("SELECT f, u FROM ForumPost f INNER JOIN User u WHERE f.posterId = u.id")
-   // public JSONArray findAllForumPosts();
-
     List<ForumPost> findByPosterId(long posterId);
 }
