@@ -14,7 +14,7 @@
     <script src="/resources/js/manageusers.js"></script>
     <link rel="stylesheet" href="/resources/css/admin-style.css">
 </head>
-<body>
+<body >
 <div class="container-fluid">
     <h2>Administrator</h2>
     <br>

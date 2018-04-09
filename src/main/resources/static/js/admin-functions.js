@@ -187,7 +187,7 @@ $(document).ready(function() {
             'weight': $("#reg_weight").val().trim(),
             'vaccines': $("#reg_vaccines").val().trim(),
             'speccond': $("#reg_conditions").val().trim(),
-            'adminId': $("#btn_register").attr('data-uid').trim(),
+            'adminId': $("#loggedIn").attr('data-uid'),
             'picpath': $("#reg_picpath").val().trim()
          }
          console.log($("#reg_picpath").val().trim())

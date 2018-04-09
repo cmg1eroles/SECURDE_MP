@@ -31,6 +31,8 @@ public class URLController {
     private ForumPostRepository forumPostRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private AdoptionRepository adoptionRepository;
 
     @RequestMapping("/home")
     public String goToHome(HttpServletRequest request, ModelMap model) {
@@ -71,6 +73,7 @@ public class URLController {
     @RequestMapping("/pet/{id}")
     public String pet(@PathVariable(value="id") Long id, ModelMap model) {
         AnimalDetails adopt = animalDetailsRepository.findOne(id);
+        Adoption transaction = adoptionRepository.findByAnimalId(adopt.getId());
         AnimalType type = animalTypeRepository.findOne(adopt.getAnimalTypeCode());
         Breed breed = breedRepository.findOne(adopt.getBreedCode());
         model.put("type", type.getAnimalType() );
@@ -79,7 +82,9 @@ public class URLController {
         model.put("weight", adopt.getWeight());
         model.put("vaccines", adopt.getVaccines() );
         model.put("speccond", adopt.getSpecConds() );
-        model.put("id", adopt.getId() );
+        model.put("id", adopt.getId());
+        model.put("status", transaction.getStatusCode());
+
         return "petprofile";
     }
     @RequestMapping("/profile/{id}")

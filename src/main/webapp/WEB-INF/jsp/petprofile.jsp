@@ -146,7 +146,7 @@
                 <form id="rsv-form" data-uid="${sessionScope.user.id}">
                     <div class="form-group">
                         <label >Pick up Date</label>
-                        <input type="datetime-local" class="form-control" id="date"placeholder="yyyy-mm-dd">
+                        <input type="datetime-local" class="form-control" id="date" placeholder="yyyy-mm-dd">
                     </div>
                     <input type="submit" class="btn btn-primary" data-dismiss="modal" id="rsv-submit" data-pid="${id}" value="Submit"/>
                 </form>

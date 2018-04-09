@@ -78,15 +78,13 @@ public class AnimalController {
                 String vaccines = (String) json.get("vaccines");
                 String speccond = (String) json.get("speccond");
                 String picpath = (String) json.get("picpath");
-                //long adminId = Long.parseLong((String)json.get("adminId"));
+                long adminId = Long.parseLong((String)json.get("adminId"));
 
                 if (type == 0 || breed == 0 || weight == 0 || vaccines.equals("")
                         || speccond.equals("") || picpath.equals("")) {
                     data.put("msg", "Please fill out all fields.");
                 } else {
                     Long id = animalDetailsRepository.newId();
-                    long adminId = 2;
-
                     AnimalDetails animal = animalDetailsRepository.save(new AnimalDetails(id, picpath, type, weight, vaccines, speccond, breed, adminId));
                     if (animal != null) {
 

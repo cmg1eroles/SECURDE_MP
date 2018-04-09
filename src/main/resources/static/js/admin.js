@@ -92,7 +92,6 @@ $(document).ready(function() {
                 $(buttons).text();
 
                 $(buttons).append(statusbtn)
-                $(buttons).append(cancelbtn)
 
                 $(tr).append(id)
                 $(tr).append(adopter)

@@ -4,20 +4,24 @@ $(document).ready(function() {
         $("#adopt-btn").show()
     }
 
-    $("#rsv-form").submit(function(e){
-        e.preventDefault()
+    $(document).on('click', '#rsv-submit', function() {
         console.log('submitting form!')
         var formans = {
-            'adopter_id': $('rsv-form').attr('data-uid'),
-            'pet_id': $('#rsv-submit').attr('data-pid')
+            'adopter_id': $('#rsv-form').attr('data-uid'),
+            'pet_id': $('#rsv-submit').attr('data-pid'),
+            'date': $('#date').val()
         }
-
+        console.log("date: " +$('#date').val())
         $.ajax({
             method: 'POST',
             url: '/adoptions/new',
             contentType: 'application/json',
             data: JSON.stringify(formans),
             success: function(response) {
+                if (response.msg = "success") {
+                    location.reload()
+                }
+                else console.log(response.success)
 
             }
         })
