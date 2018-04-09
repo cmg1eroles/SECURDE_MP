@@ -9,6 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/resources/js/forum.js"></script>
+
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
@@ -18,31 +20,12 @@
             <h1 class="display-4"> Forum </h1>
         </div>
     </div>
-    <div class="col" >
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Cats vs Dogs </h5>
-                <h6 class="members"> <span> image </span>100 members</h6>
-                <a href="#" class="btn btn-primary">Go to Forum</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">What to feed my cat?</h5>
-                <h6 class="members"><span ></span>100 members</h6>
-                <a href="#" class="btn btn-primary">Go to Forum</a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Cats vs Dogs </h5>
-                <h6 class="members"> <span> image </span>100 members</h6>
-                <a href="#" class="btn btn-primary">Go to Forum</a>
-            </div>
-        </div>
+    <div class="col" id="forum-body">
+
     </div>
     <div class="text-center">
-        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#forum-modal">Add Topic</button>
+        <button type="button" id="addBtn" class="btn btn-success btn-lg" style="display:none"
+                data-toggle="modal" data-target="#forum-modal">Add Topic</button>
     </div>
 </div>
 <!--Add Topic Modal -->
@@ -58,10 +41,10 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Topic</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter topic title">
+                        <label >Topic</label>
+                        <input type="text" class="form-control" id="add_title"  placeholder="Enter topic title">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="addForum" data-uid="${sessionScope.user.id}" >Submit</button>
                 </form>
             </div>
         </div>
