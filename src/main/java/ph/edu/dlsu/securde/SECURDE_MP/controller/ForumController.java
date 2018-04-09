@@ -53,6 +53,29 @@ public class ForumController {
 
         return data;
     }
+
+    @PostMapping("/forums/comments/new")
+    public HashMap<String, Object> addComment(HttpServletRequest request, HttpServletResponse response,
+                                            @Valid @RequestBody String addForm) {
+        HashMap<String, Object> data = new HashMap();
+
+        JSONObject json = new JSONObject(addForm);
+        long userid = Long.parseLong((String) json.get("userid"));
+        long formid = Long.parseLong((String) json.get("formid"));
+        String msg = (String) json.get("msg");
+        if ( msg.equals("")) {
+            data.put("msg", "Please fill out all fields.");
+        } else {
+            Long id = commentRepository.newId();
+            java.sql.Date date = new java.sql.Date((new java.util.Date()).getTime());
+            Comment comment = commentRepository.save(new Comment(id, userid, formid, msg, date));
+            if (comment != null) {
+                data.put("success", true);
+            } else data.put("msg", "Comment Registration failed!");
+        }
+
+        return data;
+    }
     @GetMapping("/forums")
     public List<ForumDetails> getAllForums() {
         List<ForumPost> posts = forumPostRepository.findAll();
@@ -71,7 +94,7 @@ public class ForumController {
 
 
 
-    @RequestMapping("/forums/{id}")
+    @GetMapping("/forums/{id}")
     public List<ForumComment> getForumComments(@PathVariable(value="id") Long id) {
         List<Comment> comments = commentRepository.findByForumId(id);
         List<ForumComment> forumPosts = new ArrayList<ForumComment>();

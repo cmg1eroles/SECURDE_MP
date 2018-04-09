@@ -6,14 +6,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalDetails;
-import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalType;
-import ph.edu.dlsu.securde.SECURDE_MP.model.Breed;
-import ph.edu.dlsu.securde.SECURDE_MP.model.User;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.AnimalDetailsRepository;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.AnimalTypeRepository;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.BreedRepository;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
+import ph.edu.dlsu.securde.SECURDE_MP.model.*;
+import ph.edu.dlsu.securde.SECURDE_MP.repository.*;
+
+import java.util.List;
 
 @Controller
 public class URLController {
@@ -26,6 +22,10 @@ public class URLController {
     private BreedRepository breedRepository;
     @Autowired
     private AnimalTypeRepository animalTypeRepository;
+    @Autowired
+    private CommentRepository commentRepository;
+    @Autowired
+    private ForumPostRepository forumPostRepository;
 
     @RequestMapping("/home")
     public String goToHome(ModelMap model) {
@@ -37,8 +37,18 @@ public class URLController {
     public String goToAdmin(ModelMap model) {
         return "admin";
     }
-    @RequestMapping("/forumpage")
-    public String goToForumPage(ModelMap model) {
+
+    @RequestMapping("/forumpage/{id}")
+    public String goToForumPage(@PathVariable(value="id") Long id, ModelMap model) {
+        ForumPost forum = forumPostRepository.findOne(id);
+        User user = userRepository.findOne(forum.getPosterId());
+        model.put("title",forum.getTitle());
+        model.put("firstname",user.getFirstName() );
+        model.put("lastname", user.getLastName());
+        model.put("date", forum.getPostDate());
+        model.put("forumId", forum.getId());
+        System.out.println(forum.getId());
+        System.out.println(model.get("forumId"));
         return "forumpage";
     }
     @RequestMapping("/pet/{id}")

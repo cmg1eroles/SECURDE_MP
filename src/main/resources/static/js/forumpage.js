@@ -1,55 +1,55 @@
 $(document).ready( function() {
-    console.log("FORUM READY!")
     if ($("#nav-username").text() != "") {
-        $("#addBtn").show()
+        $("#addComment").show()
     }
     //Get Forums
+    var id = $('#forumPage').attr('data-fid')
     $.ajax({
         method: 'GET',
-        url: '/forums',
+        url: '/forums/' +id,
         contentType: 'application/json',
         success: function(response) {
             for (var i = 0 ; i < response.length ; i++) {
                 console.log("response : " +response)
-                //var id = document.createElement('td')
                 var card = document.createElement('div')
                 var cardBody = document.createElement('div')
-                var h5 = document.createElement('h5')
                 var h6 = document.createElement('h6')
-                var a = document.createElement('a')
+                var p = document.createElement('p')
+                var p2 = document.createElement('p')
 
                 $(card).addClass('card')
                 $(cardBody).addClass('card-body')
-                $(h5).addClass('card-title')
-                $(h6).addClass('members')
-                $(a).addClass('btn btn-primary goForum')
-                $(a).attr('data-fid', response[i].id)
-                $(a).attr('href', '/forumpage/' + response[i].id)
+                $(h6).addClass('comment')
+                $(p).addClass('commentator')
+                $(p2).addClass('commentator')
 
-                $(h5).text(response[i].title)
-                $(h6).text(response[i].firstname +" " +response[i].lastname)
-                $(a).text("Go to Forum")
+                $(h6).text(response[i].msg)
+                $(p).text(response[i].firstname +" " +response[i].lastname)
+                $(p2).text(response[i].datetime)
 
-                $(cardBody).append(h5)
                 $(cardBody).append(h6)
-                $(cardBody).append(a)
+                $(cardBody).append(p)
+                $(cardBody).append(p2)
                 $(card).append(cardBody)
 
-                $('#forum-body').append(card)
+                $('#comments-body').append(card)
             }
         }
     })
 
-    $(document).on('click', '#addForum', function() {
-        console.log("Create New Forum")
+    $(document).on('click', '#addBtn', function() {
+
         var userid = $(this).attr('data-uid')
+        var formid = $('#newcomment').attr('data-fid')
+        console.log("user:" +userid +" forum: " +formid)
         var formans = {
             'userid':userid,
-            'title': $("#add_title").val().trim()
+            'formid': formid,
+            'msg': $("#newcomment").val().trim()
         }
         $.ajax({
             method: 'POST',
-            url: '/forums/new',
+            url: '/forums/comments/new',
             contentType: 'application/json',
             data: JSON.stringify(formans),
             success: function(response) {
@@ -62,6 +62,4 @@ $(document).ready( function() {
             }
         })
     })
-
-
 })
