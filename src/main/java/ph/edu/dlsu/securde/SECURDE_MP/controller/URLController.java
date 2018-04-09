@@ -5,13 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import ph.edu.dlsu.securde.SECURDE_MP.model.*;
+import ph.edu.dlsu.securde.SECURDE_MP.repository.*;
 import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalDetails;
 import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalType;
 import ph.edu.dlsu.securde.SECURDE_MP.model.Breed;
 import ph.edu.dlsu.securde.SECURDE_MP.model.User;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,6 +25,10 @@ public class URLController {
     private BreedRepository breedRepository;
     @Autowired
     private AnimalTypeRepository animalTypeRepository;
+    @Autowired
+    private CommentRepository commentRepository;
+    @Autowired
+    private ForumPostRepository forumPostRepository;
     @Autowired
     private RoleRepository roleRepository;
 
@@ -49,12 +52,22 @@ public class URLController {
         return goToHome(request, model);
     }
 
-    @RequestMapping("/forum")
-    public String goToForum(ModelMap model) { return "forum"; }
-    @RequestMapping("/forumpage")
-    public String goToForumPage(ModelMap model) {
+    @RequestMapping("/forumpage/{id}")
+    public String goToForumPage(@PathVariable(value="id") Long id, ModelMap model) {
+        ForumPost forum = forumPostRepository.findOne(id);
+        User user = userRepository.findOne(forum.getPosterId());
+        model.put("title", forum.getTitle());
+        model.put("firstname", user.getFirstName());
+        model.put("lastname", user.getLastName());
+        model.put("date", forum.getPostDate());
+        model.put("forumId", forum.getId());
+        System.out.println(forum.getId());
+        System.out.println(model.get("forumId"));
         return "forumpage";
     }
+    @RequestMapping("/forum")
+    public String goToForum(ModelMap model) { return "forum"; }
+
     @RequestMapping("/pet/{id}")
     public String pet(@PathVariable(value="id") Long id, ModelMap model) {
         AnimalDetails adopt = animalDetailsRepository.findOne(id);
