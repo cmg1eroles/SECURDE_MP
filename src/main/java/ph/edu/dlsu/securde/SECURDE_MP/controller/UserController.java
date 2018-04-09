@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ph.edu.dlsu.securde.SECURDE_MP.model.User;
+import ph.edu.dlsu.securde.SECURDE_MP.repository.RoleRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.service.BruteForcePreventionService;
 
@@ -26,6 +27,8 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     private Gson gson = new Gson();
 
@@ -219,20 +222,31 @@ public class UserController {
     }
 
     @PostMapping("/user/{id}/access")
-    public HashMap<String, Object> changeUserAccessControl(@PathVariable(value="id") Long id,
+    public HashMap<String, Object> changeUserAccessControl(HttpServletRequest request,
+                                                           @PathVariable(value="id") Long id,
                                                            @Valid @RequestBody String form) {
         HashMap<String, Object> data = new HashMap<>();
 
-        JSONObject json = new JSONObject(form);
-        Boolean enabled = Boolean.valueOf((String)json.get("enabled"));
-        Long type = Long.valueOf((String)json.get("type"));
-        User user = userRepository.findOne(id);
-        user.setEnabled(enabled);
-        user.setRoleCode(type);
-        userRepository.save(user);
-
-        data.put("success", true);
-
+        HttpSession ses = request.getSession(false);
+        if (ses == null) {
+            data.put("success", false);
+            data.put("msg", "You are unauthorized to commit this action!");
+        } else {
+            User u = (User) ses.getAttribute("user");
+            if (u == null || u.getRoleCode() != roleRepository.findRoleByRole("ADMIN").getCode()) {
+                data.put("success", false);
+                data.put("msg", "You are unauthorized to commit this action!");
+            } else {
+                JSONObject json = new JSONObject(form);
+                Boolean enabled = Boolean.valueOf((String)json.get("enabled"));
+                Long type = Long.valueOf((String)json.get("type"));
+                User user = userRepository.findOne(id);
+                user.setEnabled(enabled);
+                user.setRoleCode(type);
+                userRepository.save(user);
+                data.put("success", true);
+            }
+        }
         return data;
     }
 

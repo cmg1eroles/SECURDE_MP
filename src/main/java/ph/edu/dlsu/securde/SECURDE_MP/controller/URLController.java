@@ -43,12 +43,14 @@ public class URLController {
             }
         }
     }
+
+    @RequestMapping("/admin")
+    public String goToAdminView(HttpServletRequest request, ModelMap model) {
+        return goToHome(request, model);
+    }
+
     @RequestMapping("/forum")
     public String goToForum(ModelMap model) { return "forum"; }
-    @RequestMapping("/admin")
-    public String goToAdmin(ModelMap model) {
-        return "admin";
-    }
     @RequestMapping("/forumpage")
     public String goToForumPage(ModelMap model) {
         return "forumpage";
