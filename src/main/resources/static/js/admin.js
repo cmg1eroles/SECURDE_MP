@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+    var loggedInId = $("#loggedIn").attr("data-uid")
+
     console.log("Admin ready!")
     //Get Animals
     $.ajax({
@@ -132,7 +135,8 @@ $(document).ready(function() {
                 $(rolecode).text(response[i].roleCode);
                 $(buttons).text();
 
-                $(buttons).append(rolebtn)
+                if (loggedInId != response[i].id)
+                    $(buttons).append(rolebtn)
 
                 $(tr).append(id)
                 $(tr).append(username)

@@ -6,5 +6,5 @@ import ph.edu.dlsu.securde.SECURDE_MP.model.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
-
+    public Role findRoleByRole(String role);
 }

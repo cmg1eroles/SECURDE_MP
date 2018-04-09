@@ -10,10 +10,10 @@ import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalDetails;
 import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalType;
 import ph.edu.dlsu.securde.SECURDE_MP.model.Breed;
 import ph.edu.dlsu.securde.SECURDE_MP.model.User;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.AnimalDetailsRepository;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.AnimalTypeRepository;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.BreedRepository;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
+import ph.edu.dlsu.securde.SECURDE_MP.repository.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class URLController {
@@ -26,10 +26,22 @@ public class URLController {
     private BreedRepository breedRepository;
     @Autowired
     private AnimalTypeRepository animalTypeRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @RequestMapping("/home")
-    public String goToHome(ModelMap model) {
-        return "home";
+    public String goToHome(HttpServletRequest request, ModelMap model) {
+        HttpSession ses = request.getSession(false);
+        if (ses == null)
+            return "home";
+        else {
+            User u = (User) ses.getAttribute("user");
+            if (u == null || u.getRoleCode() != roleRepository.findRoleByRole("ADMIN").getCode()) {
+                return "home";
+            } else {
+                return "admin";
+            }
+        }
     }
     @RequestMapping("/forum")
     public String goToForum(ModelMap model) { return "forum"; }
