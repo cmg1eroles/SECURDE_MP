@@ -158,5 +158,6 @@
 <jsp:include page="login.jsp" />
 <!--Register Modal -->
 <jsp:include page="register.jsp" />
+<jsp:include page="forgotpassword.jsp" />
 </body>
 </html>

@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/resources/css/general.css">
     <link rel="stylesheet" href="/resources/css/index-style.css">
     <script src="/resources/js/home.js"></script>
-
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
@@ -23,5 +22,6 @@
 </div>
 <jsp:include page="login.jsp" />
 <jsp:include page="register.jsp" />
+<jsp:include page="forgotpassword.jsp" />
 </body>
 </html>

@@ -18,6 +18,7 @@
                         <label for="login_password">Password</label>
                         <input type="password" class="form-control" id="login_password" placeholder="Password">
                     </div>
+                    <a id="forgotPwLink">Forgot your password?</a>
                     <p id="login-form-msg" class="msg-error"></p>
                     <input id="btn_login" type="submit" class="btn btn-primary" value="Login"/>
                 </form>
