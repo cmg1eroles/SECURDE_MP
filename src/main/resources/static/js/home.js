@@ -24,6 +24,7 @@ $(document).ready(function() {
                 $(a).attr('href', '/pet/'+response[i].id)
 
                 $(a).append(img)
+                $(div).append(a)
                 $(deck).append(div)
                 if (i%3 == 0) {
                     $(container).append(deck)

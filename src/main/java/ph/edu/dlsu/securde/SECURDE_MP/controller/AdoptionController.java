@@ -56,13 +56,14 @@ public class AdoptionController {
         System.out.println(array1[0]);
         Date date = java.sql.Date.valueOf(array1[0]);
 
-        Long status = new Long(1);
+        Long status = new Long(2);
         Long adminId = animalDetailsRepository.findOne(petId).getAdminId();
         Adoption a = adoptionRepository.save(new Adoption(newId, adopterId, adminId, date, status, petId ));
         if (a != null) {
 
             data.put("msg", "success");
             data.put("a", a);
+
 
         } else data.put("msg", "Adoption Registration failed!");
         return data;

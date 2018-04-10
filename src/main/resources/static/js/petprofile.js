@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-    if ($("#nav-username").text() != "") {
+    console.log("Status : " +$('#adopt-btn').attr('data-status'))
+    if ($("#nav-username").text() != "" && ($('#adopt-btn').attr('data-status') == 1 )) {
         $("#adopt-btn").show()
     }
 

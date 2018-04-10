@@ -13,6 +13,7 @@ import ph.edu.dlsu.securde.SECURDE_MP.model.Breed;
 import ph.edu.dlsu.securde.SECURDE_MP.model.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class URLController {
@@ -83,7 +84,13 @@ public class URLController {
         model.put("vaccines", adopt.getVaccines() );
         model.put("speccond", adopt.getSpecConds() );
         model.put("id", adopt.getId());
-        model.put("status", transaction.getStatusCode());
+        if(transaction!= null) {
+            model.put("status", transaction.getStatusCode());
+        }
+        else {
+            model.put("status", '1');
+
+        }
 
         return "petprofile";
     }

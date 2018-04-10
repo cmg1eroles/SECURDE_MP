@@ -39,7 +39,8 @@
                     <div class="text-md-left" id="speccond"> ${speccond} </div>
                 </div>
             </div>
-            <button id="adopt-btn" style="display:none" class="btn btn-primary" data-toggle="modal" data-target="#cond-modal">Adopt Animal</button>
+            <button id="adopt-btn" style="display:none" class="btn btn-primary" data-status="${status}"
+                    data-toggle="modal" data-target="#cond-modal">Adopt Animal</button>
         </div>
     </div>
 </div>
