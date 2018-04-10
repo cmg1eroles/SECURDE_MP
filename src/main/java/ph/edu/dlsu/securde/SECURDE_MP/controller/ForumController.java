@@ -10,6 +10,7 @@ import ph.edu.dlsu.securde.SECURDE_MP.repository.CommentRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.ForumPostRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.RoleRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
+import ph.edu.dlsu.securde.SECURDE_MP.service.LoggingService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,8 @@ public class ForumController {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private LoggingService logService;
 
     @PostMapping("/forums/new")
     public HashMap<String, Object> addForum(HttpServletRequest request, HttpServletResponse response,
@@ -51,6 +54,7 @@ public class ForumController {
             if (forum != null) {
 
                 data.put("success", true);
+                logService.newForum(userRepository.findOne(userid), forum);
 
             } else data.put("msg", "Forum Registration failed!");
         }
@@ -66,6 +70,7 @@ public class ForumController {
         JSONObject json = new JSONObject(addForm);
         long userid = Long.parseLong((String) json.get("userid"));
         long formid = Long.parseLong((String) json.get("formid"));
+        ForumPost forum = forumPostRepository.findOne(formid);
         String msg = (String) json.get("msg");
         if ( msg.equals("")) {
             data.put("msg", "Please fill out all fields.");
@@ -75,6 +80,7 @@ public class ForumController {
             Comment comment = commentRepository.save(new Comment(id, userid, formid, msg, date));
             if (comment != null) {
                 data.put("success", true);
+                logService.commentForum(userRepository.findOne(userid), forum, comment);
             } else data.put("msg", "Comment Registration failed!");
         }
 
@@ -131,10 +137,12 @@ public class ForumController {
                 data.put("msg", "You are unauthorized to commit this action!");
             } else {
                 List<ForumComment> comments = getForumComments(id);
+                ForumPost forum = forumPostRepository.findOne(id);
                 forumPostRepository.delete(id);
                 for(int i = 0; i < comments.size(); i++)
                     commentRepository.delete(comments.get(i).getId());
                 data.put("success", true);
+                logService.deleteForum(u, forum);
             }
         }
         return data;

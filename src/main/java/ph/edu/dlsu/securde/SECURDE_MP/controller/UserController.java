@@ -12,6 +12,7 @@ import ph.edu.dlsu.securde.SECURDE_MP.repository.RoleRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.service.BruteForcePreventionService;
 import ph.edu.dlsu.securde.SECURDE_MP.service.ForgotPasswordService;
+import ph.edu.dlsu.securde.SECURDE_MP.service.LoggingService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +33,8 @@ public class UserController {
     private RoleRepository roleRepository;
     @Autowired
     private ForgotPasswordService fpwService;
+    @Autowired
+    private LoggingService logService;
 
     private Gson gson = new Gson();
 
@@ -64,12 +67,14 @@ public class UserController {
         if (user.isEmpty()) u = null; else u = user.get(0);
         if (u == null) {
             data.put("msg", "Invalid email or password!");
+            logService.login(null, false);
         } else {
             String email = u.getEmail();
             Date timeOut = bfpService.getTimeOut(email);
             if (now.before(timeOut)) {
                 data.put("msg", "timed-out");
                 data.put("timeout", (timeOut.getTime() - now.getTime())/1000);
+                logService.login(u, false);
             } else {
                 if (!encoder.matches((String)json.get("password"), u.getPassword())) {
                     data.put("msg", "Invalid email or password!");
@@ -79,11 +84,13 @@ public class UserController {
                         data.put("msg", "timed-out");
                         data.put("timeout", (timeOut.getTime() - now.getTime())/1000);
                     }
+                    logService.login(u, false);
                 } else {
                     bfpService.attemptSuccess(email);
                     data.put("success", true);
                     data.put("user", user.get(0));
                     request.getSession().setAttribute("user", u);
+                    logService.login(u, true);
                 }
             }
         }
@@ -133,6 +140,7 @@ public class UserController {
                     data.put("msg", "success");
                     data.put("user", u);
                     request.getSession().setAttribute("user", u);
+                    logService.register(u);
                 }
                 else data.put("msg", "User Registration failed!");
             }
@@ -145,8 +153,12 @@ public class UserController {
     @PostMapping("/logout")
     public String logoutUser(HttpServletRequest request, HttpServletResponse response) {
         HttpSession ses = request.getSession(false);
-        if (ses != null)
+        if (ses != null) {
+            User u = (User) ses.getAttribute("user");
+            if (u != null)
+                logService.logout(u);
             ses.invalidate();
+        }
         return "success";
     }
 
@@ -177,6 +189,7 @@ public class UserController {
                 userRepository.save(user);
                 data.put("msg", "Password successfully changed!");
                 data.put("success", true);
+                logService.changePassword(user);
             }
         } else {
             data.put("msg", "No user is logged in!");
@@ -215,6 +228,7 @@ public class UserController {
                 request.getSession().setAttribute("user", user);
                 data.put("success", true);
                 data.put("msg", "User information successfully updated!");
+                logService.editProfileInfo(user);
             }
             else {
                 data.put("msg", "Incorrect password!");
@@ -248,6 +262,7 @@ public class UserController {
                 user.setRoleCode(type);
                 userRepository.save(user);
                 data.put("success", true);
+                logService.changeUserStatus(user, roleRepository.findOne(type));
             }
         }
         return data;
@@ -273,6 +288,7 @@ public class UserController {
             } else {
                 data.put("msg", "Your password has been reset! Please check your email.");
                 data.put("success", true);
+                logService.passwordReset(u);
             }
         }
         return data;

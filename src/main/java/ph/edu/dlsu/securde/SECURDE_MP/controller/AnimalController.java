@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ph.edu.dlsu.securde.SECURDE_MP.model.*;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.*;
+import ph.edu.dlsu.securde.SECURDE_MP.service.LoggingService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,8 @@ public class AnimalController {
     private StatusRepository statusRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private LoggingService logService;
 
     @GetMapping("/animal/types")
     public List<AnimalType> getAllTypes() {
@@ -95,6 +98,7 @@ public class AnimalController {
 
                         data.put("msg", "success");
                         data.put("animal", animal);
+                        logService.addAnimal(u, animal);
 
                     } else data.put("msg", "Animal Registration failed!");
                 }
@@ -137,6 +141,7 @@ public class AnimalController {
                         animalDetailsRepository.save(animal);
                         data.put("success", true);
                         data.put("msg", "Animal information successfully updated!");
+                        logService.editAnimalInfo(u, animal);
                     }
                 }
             }
@@ -158,8 +163,10 @@ public class AnimalController {
                 data.put("success", false);
                 data.put("msg", "You are unauthorized to commit this action!");
             } else {
+                AnimalDetails animal = animalDetailsRepository.findOne(id);
                 animalDetailsRepository.delete(id);
                 data.put("success", true);
+                logService.deleteAnimal(u, animal);
             }
         }
         return data;

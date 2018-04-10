@@ -5,10 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import ph.edu.dlsu.securde.SECURDE_MP.model.Adoption;
 import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalDetails;
 import ph.edu.dlsu.securde.SECURDE_MP.model.User;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.AdoptionRepository;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.AnimalDetailsRepository;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.RoleRepository;
-import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
+import ph.edu.dlsu.securde.SECURDE_MP.repository.*;
+import ph.edu.dlsu.securde.SECURDE_MP.service.LoggingService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +27,10 @@ public class AdoptionController {
    private RoleRepository roleRepository;
    @Autowired
    private AnimalDetailsRepository animalDetailsRepository;
+   @Autowired
+   private StatusRepository statusRepository;
+   @Autowired
+   private LoggingService logService;
 
     @GetMapping("/adoptions")
     public List<Adoption> getAllAdoptions() {
@@ -57,13 +59,15 @@ public class AdoptionController {
         Date date = java.sql.Date.valueOf(array1[0]);
 
         Long status = new Long(2);
-        Long adminId = animalDetailsRepository.findOne(petId).getAdminId();
+        AnimalDetails animalDetails = animalDetailsRepository.findOne(petId);
+        Long adminId = animalDetails.getAdminId();
         Adoption a = adoptionRepository.save(new Adoption(newId, adopterId, adminId, date, status, petId ));
         if (a != null) {
 
             data.put("msg", "success");
             data.put("a", a);
-
+            User adopter = userRepository.findOne(adopterId);
+            logService.adopt(adopter, animalDetails);
 
         } else data.put("msg", "Adoption Registration failed!");
         return data;
@@ -92,6 +96,7 @@ public class AdoptionController {
                         adoptionRepository.save(adopt);
                         data.put("success", true);
                         data.put("msg", "Transaction information successfully updated!");
+                        logService.changeAnimalSstatus(u, adopt, statusRepository.findOne(status));
                     }
                 }
             }
