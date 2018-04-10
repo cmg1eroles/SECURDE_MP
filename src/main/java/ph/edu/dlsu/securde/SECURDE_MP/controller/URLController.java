@@ -54,6 +54,12 @@ public class URLController {
             }
         }
     }
+    @RequestMapping("/search/{word}")
+    public String goToSearch(@PathVariable(value="word") String word, ModelMap model) {
+        System.out.println();
+        model.put("search", word);
+        return "search";
+    }
     @RequestMapping("/type/{id}")
     public String goToType(@PathVariable(value="id") Long id, ModelMap model) {
         model.put("id", id);

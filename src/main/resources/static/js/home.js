@@ -34,4 +34,11 @@ $(document).ready(function() {
         }
     })
 
+    $('#searchForm').submit(function(e) {
+        e.preventDefault()
+        var search = $('#search_bar').val()
+        console.log(search)
+        window.location.href = 'search/' +search
+
+    })
 })
