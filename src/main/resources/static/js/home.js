@@ -21,9 +21,10 @@ $(document).ready(function() {
                 $(div).addClass('card')
                 $(img).addClass('card-img-top')
                 $(img).attr('src', response[i].picPath)
-                // $(a).attr('href', '/pet/'+response[i].id)
+                $(a).attr('href', '/pet/'+response[i].id)
 
-                $(div).append(img)
+                $(a).append(img)
+                $(div).append(a)
                 $(deck).append(div)
                 if (i%3 == 0) {
                     $(container).append(deck)

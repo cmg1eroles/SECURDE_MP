@@ -39,7 +39,8 @@
                     <div class="text-md-left" id="speccond"> ${speccond} </div>
                 </div>
             </div>
-            <button id="adopt-btn" style="display:none" class="btn btn-primary" data-toggle="modal" data-target="#cond-modal">Adopt Animal</button>
+            <button id="adopt-btn" style="display:none" class="btn btn-primary" data-status="${status}"
+                    data-toggle="modal" data-target="#cond-modal">Adopt Animal</button>
         </div>
     </div>
 </div>
@@ -146,7 +147,7 @@
                 <form id="rsv-form" data-uid="${sessionScope.user.id}">
                     <div class="form-group">
                         <label >Pick up Date</label>
-                        <input type="datetime-local" class="form-control" id="date"placeholder="yyyy-mm-dd">
+                        <input type="datetime-local" class="form-control" id="date" placeholder="yyyy-mm-dd">
                     </div>
                     <input type="submit" class="btn btn-primary" data-dismiss="modal" id="rsv-submit" data-pid="${id}" value="Submit"/>
                 </form>

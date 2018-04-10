@@ -13,6 +13,7 @@ import ph.edu.dlsu.securde.SECURDE_MP.model.Breed;
 import ph.edu.dlsu.securde.SECURDE_MP.model.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class URLController {
@@ -31,6 +32,8 @@ public class URLController {
     private ForumPostRepository forumPostRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private AdoptionRepository adoptionRepository;
 
     @RequestMapping("/")
     public String defaultPage(HttpServletRequest request, ModelMap model) {
@@ -76,6 +79,7 @@ public class URLController {
     @RequestMapping("/pet/{id}")
     public String pet(@PathVariable(value="id") Long id, ModelMap model) {
         AnimalDetails adopt = animalDetailsRepository.findOne(id);
+        Adoption transaction = adoptionRepository.findByAnimalId(adopt.getId());
         AnimalType type = animalTypeRepository.findOne(adopt.getAnimalTypeCode());
         Breed breed = breedRepository.findOne(adopt.getBreedCode());
         model.put("type", type.getAnimalType() );
@@ -84,7 +88,15 @@ public class URLController {
         model.put("weight", adopt.getWeight());
         model.put("vaccines", adopt.getVaccines() );
         model.put("speccond", adopt.getSpecConds() );
-        model.put("id", adopt.getId() );
+        model.put("id", adopt.getId());
+        if(transaction!= null) {
+            model.put("status", transaction.getStatusCode());
+        }
+        else {
+            model.put("status", '1');
+
+        }
+
         return "petprofile";
     }
 

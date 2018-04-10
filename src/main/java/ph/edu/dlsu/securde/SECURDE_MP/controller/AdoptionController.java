@@ -6,6 +6,7 @@ import ph.edu.dlsu.securde.SECURDE_MP.model.Adoption;
 import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalDetails;
 import ph.edu.dlsu.securde.SECURDE_MP.model.User;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.AdoptionRepository;
+import ph.edu.dlsu.securde.SECURDE_MP.repository.AnimalDetailsRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.RoleRepository;
 import ph.edu.dlsu.securde.SECURDE_MP.repository.UserRepository;
 
@@ -26,6 +27,8 @@ public class AdoptionController {
    private UserRepository userRepository;
    @Autowired
    private RoleRepository roleRepository;
+   @Autowired
+   private AnimalDetailsRepository animalDetailsRepository;
 
     @GetMapping("/adoptions")
     public List<Adoption> getAllAdoptions() {
@@ -42,21 +45,27 @@ public class AdoptionController {
     public HashMap<String, Object> addAdoption(@Valid @RequestBody String form) {
         HashMap<String, Object> data = new HashMap<>();
 
-        Long newId = userRepository.newId();
-        Long newI = adoptionRepository.newId();
+        Long newId = adoptionRepository.newId();
+
 
         JSONObject json = new JSONObject(form);
         Long adopterId = Long.parseLong((String)json.get("adopter_id"));
         Long petId = Long.parseLong((String)json.get("pet_id"));
-        Date date = new Date((new java.util.Date()).getTime());
+        String str = (String)json.get("date");
+        String array1[]= str.split("T");
+        System.out.println(array1[0]);
+        Date date = java.sql.Date.valueOf(array1[0]);
 
-        Adoption a = new Adoption();
-        a.setId(newId);
-        a.setAdopterId(adopterId);
-        a.setAdminId(petId);
-        a.setDateAdopted(date);
+        Long status = new Long(2);
+        Long adminId = animalDetailsRepository.findOne(petId).getAdminId();
+        Adoption a = adoptionRepository.save(new Adoption(newId, adopterId, adminId, date, status, petId ));
+        if (a != null) {
+
+            data.put("msg", "success");
+            data.put("a", a);
 
 
+        } else data.put("msg", "Adoption Registration failed!");
         return data;
     }
     @PostMapping("/adoptions/{id}")
