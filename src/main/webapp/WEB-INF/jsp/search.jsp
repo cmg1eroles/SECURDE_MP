@@ -9,16 +9,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/resources/css/general.css">
-    <link rel="stylesheet" href="/resources/css/index-style.css">
-    <script src="/resources/js/home.js"></script>
+    <script src="/resources/js/search.js"></script>
 </head>
 <body>
 <jsp:include page="navbar.jsp" />
 <div class="container">
-    <form class="form" id="searchForm">
-        <input id="search_bar" class="form-control form-control-lg" type="search" placeholder="Search Breed">
-    </form>
-
+    <div class="jumbotron">
+        <div class="text-center">
+            <div class="mx-auto">
+                <h1 class="display-4"> Search results for  <span id="searchword" data-search="${search}"> ${search}</span> </h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" id="search-body">
+        </div>
+    </div>
 </div>
 <jsp:include page="login.jsp" />
 <jsp:include page="register.jsp" />

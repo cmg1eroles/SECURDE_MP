@@ -13,4 +13,5 @@ public interface AnimalDetailsRepository extends JpaRepository<AnimalDetails, Lo
     public Long newId();
 
     List<AnimalDetails> findByAnimalTypeCode(long typeCode);
+    List<AnimalDetails> findByBreedCode(long breedCode);
 }

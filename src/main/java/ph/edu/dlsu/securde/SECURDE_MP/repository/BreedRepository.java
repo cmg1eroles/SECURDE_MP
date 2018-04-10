@@ -6,5 +6,5 @@ import ph.edu.dlsu.securde.SECURDE_MP.model.Breed;
 
 @Repository
 public interface BreedRepository extends JpaRepository<Breed, Long> {
-
+    Breed findBreedByBreed(String breed);
 }
