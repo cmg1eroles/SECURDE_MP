@@ -54,7 +54,11 @@ public class URLController {
             }
         }
     }
-
+    @RequestMapping("/type/{id}")
+    public String goToType(@PathVariable(value="id") Long id, ModelMap model) {
+        model.put("id", id);
+        return "type";
+    }
     @RequestMapping("/admin")
     public String goToAdminView(HttpServletRequest request, ModelMap model) {
         return goToHome(request, model);

@@ -1,4 +1,5 @@
 <script src="/resources/js/login.js"></script>
+<script src="/resources/js/navbar.js"></script>
 <nav class="navbar navbar-light bg-light fixed-top ">
     <ul class="nav justify-content">
         <li class="nav-item">
@@ -11,7 +12,7 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Categories
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="typeItems">
                 <a class="dropdown-item" href="/home">  </a>
             </div>
         </li>

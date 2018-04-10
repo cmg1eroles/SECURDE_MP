@@ -41,6 +41,11 @@ public class AnimalController {
         return animalDetailsRepository.findAll();
     }
 
+    @GetMapping("/animal/adoptions/{id}")
+    public List<AnimalDetails> getAllPostAdoptionsByType(@PathVariable Long id) {
+        return animalDetailsRepository.findByAnimalTypeCode(id);
+    }
+
     @GetMapping("/animal/{id}")
     public AnimalDetails getAnimalDetails(@PathVariable Long id) {
         return animalDetailsRepository.findOne(id);
