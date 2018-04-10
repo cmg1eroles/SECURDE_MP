@@ -5,8 +5,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ph.edu.dlsu.securde.SECURDE_MP.model.AnimalDetails;
 
+import java.util.List;
+
 @Repository
 public interface AnimalDetailsRepository extends JpaRepository<AnimalDetails, Long> {
     @Query(value = "SELECT COALESCE(MAX(id), 0)+1 FROM animal_details", nativeQuery = true)
     public Long newId();
+
+    List<AnimalDetails> findByAnimalTypeCode(long typeCode);
 }
