@@ -32,6 +32,11 @@ public class URLController {
     @Autowired
     private RoleRepository roleRepository;
 
+    @RequestMapping("/")
+    public String defaultPage(HttpServletRequest request, ModelMap model) {
+        return goToHome(request, model);
+    }
+
     @RequestMapping("/home")
     public String goToHome(HttpServletRequest request, ModelMap model) {
         HttpSession ses = request.getSession(false);
@@ -82,6 +87,7 @@ public class URLController {
         model.put("id", adopt.getId() );
         return "petprofile";
     }
+
     @RequestMapping("/profile/{id}")
     public String profile(@PathVariable(value="id") Long id, ModelMap model) {
         User user = userRepository.findOne(id);
