@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="loginForm">
+                <form id="loginForm" method="POST">
                     <div class="form-group">
                         <label for="login_email">Email address</label>
                         <input type="email" class="form-control" id="login_email" aria-describedby="emailHelp" placeholder="Email">

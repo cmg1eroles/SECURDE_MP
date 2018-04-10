@@ -150,7 +150,7 @@ public class UserController {
         return data;
     }
 
-    @PostMapping("/logout")
+    @RequestMapping("/logout")
     public String logoutUser(HttpServletRequest request, HttpServletResponse response) {
         HttpSession ses = request.getSession(false);
         if (ses != null) {
