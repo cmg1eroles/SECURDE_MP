@@ -113,4 +113,20 @@ public class AnimalDetails {
                 ", adminId=" + adminId +
                 '}';
     }
+
+    public boolean isValid()  {
+        if(picPath.length() <= 0 || animalTypeCode <= 0 || weight <= 0 || vaccines.length() <= 0 || specConds.length() <= 0 || breedCode <= 0)
+            return false;
+
+        if(Character.isLetter((char)animalTypeCode))
+            return false;
+
+        if(Character.isLetter((char)weight))
+            return false;
+
+        if(Character.isLetter((char)breedCode))
+            return false;
+
+        return true;
+    }
 }

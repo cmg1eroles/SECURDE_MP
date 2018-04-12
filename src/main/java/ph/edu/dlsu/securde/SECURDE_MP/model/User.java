@@ -126,4 +126,21 @@ public class User {
                 ", enabled=" + enabled +
                 '}';
     }
+
+    public boolean isValid() {
+
+        if(firstName.length() <= 0 || lastName.length() <= 0 || username.length() <= 0 || password.length() <= 0 || email.length() <= 0 || description.length() <= 0)
+            return valid = false;
+
+        for(int i = 0; i <= firstName.length(); i++)
+            if(Character.isDigit(firstName.charAt(i)) || firstName.charAt(i) == ' ')
+                return false;
+
+        for(int i = 0; i <= lastName.length(); i++)
+            if(Character.isDigit(lastName.charAt(i)) || lastName.charAt(i) == ' ')
+                return false;
+
+        return true;
+
+    }
 }

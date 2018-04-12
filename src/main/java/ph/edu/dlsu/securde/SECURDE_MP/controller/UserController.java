@@ -136,7 +136,7 @@ public class UserController {
             if (passwordIsValid(pw)) {
                 pw = encoder.encode(pw);
                 User u = userRepository.save(new User(id, fName, lName, uname, pw, email, "", 0L, true));
-                if (u != null) {
+                if (u != null && u.isValid()) {
                     data.put("msg", "success");
                     data.put("user", u);
                     request.getSession().setAttribute("user", u);

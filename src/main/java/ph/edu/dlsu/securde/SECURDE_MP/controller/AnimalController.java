@@ -94,7 +94,7 @@ public class AnimalController {
                 } else {
                     Long id = animalDetailsRepository.newId();
                     AnimalDetails animal = animalDetailsRepository.save(new AnimalDetails(id, picpath, type, weight, vaccines, speccond, breed, adminId));
-                    if (animal != null) {
+                    if (animal != null && animal.isValid()) {
 
                         data.put("msg", "success");
                         data.put("animal", animal);
