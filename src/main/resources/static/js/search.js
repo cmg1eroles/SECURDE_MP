@@ -6,6 +6,11 @@ $(document).ready(function() {
         contentType: 'application/json',
         success: function(response) {
             console.log(response)
+
+                if(response.length == 0) {
+                    console.log('response is empty')
+                    $('#search-body').text("No Results Found!")
+                }
                 for (var i = 0 ; i < response.length ; i++) {
                     var container
                     var deck
@@ -32,6 +37,7 @@ $(document).ready(function() {
                         $('#search-body').append(container)
                     }
                 }
+
         }
     })
 })

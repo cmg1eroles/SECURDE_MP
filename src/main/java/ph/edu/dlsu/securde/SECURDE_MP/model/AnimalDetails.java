@@ -117,16 +117,23 @@ public class AnimalDetails {
     public boolean isValid()  {
         if(picPath.length() <= 0 || animalTypeCode <= 0 || weight <= 0 || vaccines.length() <= 0 || specConds.length() <= 0 || breedCode <= 0)
             return false;
+        String animalcode = String.valueOf(getAnimalTypeCode());
+        String weight = String.valueOf(getWeight());
+        String breedcode = String.valueOf(getBreedCode());
 
-        if(Character.isLetter((char)animalTypeCode))
-            return false;
+        for(int i = 0; i < animalcode.length(); i++) {
+            if(Character.isLetter(animalcode.charAt(0)))
+                return false;
+        }
+        for(int i = 0; i < weight.length(); i++) {
+            if(Character.isLetter(weight.charAt(i)))
+                return false;
+        }
 
-        if(Character.isLetter((char)weight))
-            return false;
-
-        if(Character.isLetter((char)breedCode))
-            return false;
-
+        for(int i = 0; i < breedcode.length(); i++) {
+            if(Character.isLetter(breedcode.charAt(0)))
+                return false;
+        }
         return true;
     }
 }

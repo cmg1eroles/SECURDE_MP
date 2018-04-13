@@ -13,7 +13,6 @@
                 Categories
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="typeItems">
-                <a class="dropdown-item" href="/home">  </a>
             </div>
         </li>
     </ul>

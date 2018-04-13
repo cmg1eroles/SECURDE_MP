@@ -93,9 +93,9 @@ public class AnimalController {
                     data.put("msg", "Please fill out all fields.");
                 } else {
                     Long id = animalDetailsRepository.newId();
-                    AnimalDetails animal = animalDetailsRepository.save(new AnimalDetails(id, picpath, type, weight, vaccines, speccond, breed, adminId));
+                    AnimalDetails animal = new AnimalDetails(id, picpath, type, weight, vaccines, speccond, breed, adminId);
                     if (animal != null && animal.isValid()) {
-
+                        animalDetailsRepository.save(animal);
                         data.put("msg", "success");
                         data.put("animal", animal);
                         logService.addAnimal(u, animal);

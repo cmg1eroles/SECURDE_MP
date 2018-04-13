@@ -39,21 +39,24 @@ $(document).ready(function() {
         url: '/adoptions/user/'+profileUser,
         contentType: 'application/json',
         success: function(response) {
-            console.log("Past Adoptions: " +response)
+            console.log("Past Adoptions: " + response.length)
             for (var i = 0 ; i < response.length ; i++) {
-                var a = document.createElement('a')
-                var img = document.createElement('img')
-                var div = document.createElement('div')
+                console.log(response[i])
 
-                $(div).addClass('card')
-                $(img).addClass('card-img-top')
-                $(img).attr('src', response[i].picPath)
-                $(a).attr('href', '/pet/'+response[i].id)
+                var card = document.createElement('div')
+                var cardBody = document.createElement('div')
+                var h6 = document.createElement('h6')
 
-                $(a).append(img)
-                $(div).append(a)
-                $("#adoption-col").append(div)
-               
+                $(card).addClass('card')
+                $(cardBody).addClass('card-body')
+                $(h6).addClass('comment')
+
+                $(h6).text(response[i].dateAdopted)
+
+                $(cardBody).append(h6)
+                $(card).append(cardBody)
+
+                $('#adoption-col').append(card)
             }
         }
     })

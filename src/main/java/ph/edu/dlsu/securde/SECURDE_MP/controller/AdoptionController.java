@@ -40,15 +40,9 @@ public class AdoptionController {
     }
 
     @GetMapping("/adoptions/user/{id}")
-    public List<AnimalDetails> getUserAdoption(@PathVariable(value = "id") Long id) {
+    public List<Adoption> getUserAdoption(@PathVariable(value = "id") Long id) {
         List<Adoption> adopted = adoptionRepository.findByAdopterId(id);
-        List<AnimalDetails> animals = new ArrayList<AnimalDetails>();
-            for ( int i = 0; i < adopted.size(); i++) {
-                animals.add(animalDetailsRepository.getOne(adopted.get(i).getAnimalId()));
-                System.out.println(animals.get(i).getId());
-            }
-        System.out.println("Animals: " +animals);
-        return animals;
+        return adopted;
     }
 
     @GetMapping("/adoptions/{id}")

@@ -135,8 +135,9 @@ public class UserController {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             if (passwordIsValid(pw)) {
                 pw = encoder.encode(pw);
-                User u = userRepository.save(new User(id, fName, lName, uname, pw, email, "", 0L, true));
+                User u = new User(id, fName, lName, uname, pw, email, "", 0L, true);
                 if (u != null && u.isValid()) {
+                    userRepository.save(u);
                     data.put("msg", "success");
                     data.put("user", u);
                     request.getSession().setAttribute("user", u);

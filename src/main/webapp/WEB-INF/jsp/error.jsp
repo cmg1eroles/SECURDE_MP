@@ -10,7 +10,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/resources/css/general.css">
     <link rel="stylesheet" href="/resources/css/index-style.css">
-    <script src="/resources/js/home.js"></script>
 </head>
 <body>
 <jsp:include page="navbar.jsp" />

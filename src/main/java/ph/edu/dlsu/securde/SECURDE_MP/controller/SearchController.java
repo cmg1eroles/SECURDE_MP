@@ -26,9 +26,7 @@ public class SearchController {
 
     @RequestMapping("/search/find/{word}")
     public List<AnimalDetails> goSearch(@PathVariable(value="word") String word, ModelMap model) {
-        System.out.println("word: " +word);
         Breed breed = breedRepository.findBreedByBreed(word);
-        System.out.println("breed: " +breed.getBreed());
         if (breed != null) {
             model.put("success", true);
             return animalDetailsRepository.findByBreedCode(breed.getCode());
