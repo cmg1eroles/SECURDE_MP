@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,6 +37,18 @@ public class AdoptionController {
     public List<Adoption> getAllAdoptions() {
         List<Adoption> adopts = adoptionRepository.findAll();
         return adopts;
+    }
+
+    @GetMapping("/adoptions/user/{id}")
+    public List<AnimalDetails> getUserAdoption(@PathVariable(value = "id") Long id) {
+        List<Adoption> adopted = adoptionRepository.findByAdopterId(id);
+        List<AnimalDetails> animals = new ArrayList<AnimalDetails>();
+            for ( int i = 0; i < adopted.size(); i++) {
+                animals.add(animalDetailsRepository.getOne(adopted.get(i).getAnimalId()));
+                System.out.println(animals.get(i).getId());
+            }
+        System.out.println("Animals: " +animals);
+        return animals;
     }
 
     @GetMapping("/adoptions/{id}")

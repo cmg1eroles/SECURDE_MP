@@ -14,5 +14,4 @@ public interface AdoptionRepository extends JpaRepository<Adoption, Long> {
 
     List<Adoption> findByAdopterId(long adopterId);
     Adoption findByAnimalId(long animalId);
-
 }

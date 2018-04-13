@@ -4,6 +4,60 @@ $(document).ready(function() {
     if (loggedInUser == profileUser)
         $("#btn-edit-profile").show()
 
+    $.ajax({
+        method: 'GET',
+        url: '/forums/user/' +profileUser,
+        contentType: 'application/json',
+        success: function(response) {
+            for (var i = 0 ; i < response.length ; i++) {
+                console.log("response : " +response)
+                var card = document.createElement('div')
+                var cardBody = document.createElement('div')
+                var h6 = document.createElement('h6')
+                var p = document.createElement('p')
+                var p2 = document.createElement('p')
+
+                $(card).addClass('card')
+                $(cardBody).addClass('card-body')
+                $(h6).addClass('comment')
+                $(p).addClass('commentator')
+                $(p2).addClass('commentator')
+
+                $(h6).text(response[i].title)
+                $(p).text(response[i].firstname +" " +response[i].lastname)
+
+                $(cardBody).append(h6)
+                $(cardBody).append(p)
+                $(card).append(cardBody)
+
+                $('#forum-col').append(card)
+            }
+        }
+    })
+    $.ajax({
+        method: 'GET',
+        url: '/adoptions/user/'+profileUser,
+        contentType: 'application/json',
+        success: function(response) {
+            console.log("Past Adoptions: " +response)
+            for (var i = 0 ; i < response.length ; i++) {
+                var a = document.createElement('a')
+                var img = document.createElement('img')
+                var div = document.createElement('div')
+
+                $(div).addClass('card')
+                $(img).addClass('card-img-top')
+                $(img).attr('src', response[i].picPath)
+                $(a).attr('href', '/pet/'+response[i].id)
+
+                $(a).append(img)
+                $(div).append(a)
+                $("#adoption-col").append(div)
+               
+            }
+        }
+    })
+
     $("#confirmForm").submit(function(e) {
         e.preventDefault()
         var formans = {

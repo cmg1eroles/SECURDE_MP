@@ -101,8 +101,21 @@ public class ForumController {
         }
         return forums;
     }
+    @GetMapping("/forums/user/{id}")
+    public List<ForumDetails> getUserForums(@PathVariable(value="id") Long id) {
+        List<ForumPost> posts = forumPostRepository.findByPosterId(id);
+        List<ForumDetails> forums = new ArrayList<ForumDetails>();
 
-
+        for(int i = 0; i < posts.size(); i++) {
+            User user = userRepository.findOne(posts.get(i).getPosterId());
+            forums.add( new ForumDetails(posts.get(i).getId(),
+                    user.getFirstName(),
+                    user.getLastName(),
+                    posts.get(i).getTitle(),
+                    posts.get(i).getPostDate()));
+        }
+        return forums;
+    }
 
     @GetMapping("/forums/{id}")
     public List<ForumComment> getForumComments(@PathVariable(value="id") Long id) {

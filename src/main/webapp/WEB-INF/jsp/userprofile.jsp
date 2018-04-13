@@ -19,7 +19,7 @@
         <div class="text-center">
             <img src="https://images4.alphacoders.com/227/thumb-1920-22714.jpg"class="rounded-circle" id="profile-pic">
             <div class="mx-auto">
-                <h3 id="uname" data-uid="${id}"> ${username} <button id="btn-edit-profile"class="btn btn-primary" data-toggle="modal" data-target="#edit-modal"> Edit Profile </button></h3>
+                <h3 id="uname" data-uid="${id}"> ${username} <button id="btn-edit-profile"class="btn btn-primary" data-toggle="modal" data-target="#edit-modal">  <img src="/resources/img/svg/pencil.svg" alt="icon name"> </button></h3>
                 <div id="name">
                     <span> ${firstname} </span>
                     <span> ${lastname} </span>
@@ -32,34 +32,13 @@
         <div class="col" >
             <div class="card" id="forum-col">
                 <!-- forums -->
-                <div class="card-header"> Forums Joined </div>
-                <div class="card-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Cats vs Dogs </h5>
-                            <a href="#" class="btn btn-primary">Go to Forum</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">What to feed my cat?</h5>
-                            <a href="#" class="btn btn-primary">Go to Forum</a>
-                        </div>
-                    </div>
-                </div>
-
+                <div class="card-header"> Forums Created </div>
             </div>
         </div>
         <div class="col">
             <div class="card" id="adoption-col">
                 <div class="card-header"> Past Adoptions </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> <span class="innerlist"> Corgi </span> </li>
-                    <li class="list-group-item"> <span class="innerlist"> Husky </span> </li>
-                    <li class="list-group-item"> <span class="innerlist"> Beagle </span> </li>
-                </ul>
+
             </div>
         </div>
     </div>

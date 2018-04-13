@@ -13,7 +13,7 @@ public class AnimalDetails {
     @Column
     private Long animalTypeCode;
     @Column
-    private float weight;
+    private Float weight;
     @Column
     private String vaccines;
     @Column
@@ -25,7 +25,7 @@ public class AnimalDetails {
 
     public AnimalDetails() {}
 
-    public AnimalDetails(Long id, String picPath, Long animalTypeCode, float weight, String vaccines, String specConds, Long breedCode, Long adminId) {
+    public AnimalDetails(Long id, String picPath, Long animalTypeCode, Float weight, String vaccines, String specConds, Long breedCode, Long adminId) {
         this.id = id;
         this.picPath = picPath;
         this.animalTypeCode = animalTypeCode;
@@ -60,7 +60,7 @@ public class AnimalDetails {
         this.animalTypeCode = animalTypeCode;
     }
 
-    public float getWeight() {
+    public Float getWeight() {
         return weight;
     }
 
